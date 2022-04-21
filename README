@@ -1,0 +1,38 @@
+#### CHRONO PARK ####
+
+
+### Authors :
+
+    anthony.verkindere
+    charlotte.buat
+    nathan.labernardiere
+
+
+### How to use Chrono Park :
+    
+
+    ## Interface :
+
+
+        # Compilation :
+
+            Go to the GUI directory :
+                cd src/GUI/
+            Then to compile the program and generate the executable file :
+                make gui
+
+        
+        # Execution :
+        
+            Once the program has been compiled, you can run the GUI program :
+                ./gui
+            Then, a window with all options appairs.
+            You can refer to "# Description" where all options are described and explained.
+
+        # Cleaning :
+
+            You can clean all created files by typing :
+                make clean
+
+        
+        # Description :
