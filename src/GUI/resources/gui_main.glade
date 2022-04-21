@@ -16,7 +16,7 @@
     <property name="step_increment">1</property>
     <property name="page_increment">10</property>
   </object>
-  <object class="GtkWindow" id="window">
+  <object class="GtkWindow" id="window1">
     <property name="can_focus">False</property>
     <property name="default_width">800</property>
     <property name="default_height">500</property>
@@ -103,12 +103,57 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="adjustment">adjustment2</property>
+            <signal name="value-changed" handler="on_spin2_value_changed" swapped="no"/>
           </object>
           <packing>
             <property name="x">450</property>
             <property name="y">130</property>
           </packing>
         </child>
+        <child>
+          <object class="GtkLabel">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">Rain</property>
+            <attributes>
+              <attribute name="weight" value="medium"/>
+              <attribute name="scale" value="1.1000000000000001"/>
+            </attributes>
+          </object>
+          <packing>
+            <property name="x">250</property>
+            <property name="y">202</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkCheckButton" id="check1">
+            <property name="label" translatable="yes">
+</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">False</property>
+            <property name="draw_indicator">True</property>
+            <signal name="toggled" handler="on_check1_toggled" swapped="no"/>
+          </object>
+          <packing>
+            <property name="x">498</property>
+            <property name="y">193</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkWindow" id="window2">
+    <property name="can_focus">False</property>
+    <property name="default_width">800</property>
+    <property name="default_height">500</property>
+    <child type="titlebar">
+      <placeholder/>
+    </child>
+    <child>
+      <object class="GtkFixed" id="fixed2">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
       </object>
     </child>
   </object>
