@@ -287,6 +287,17 @@
             <property name="y">100</property>
           </packing>
         </child>
+        <child>
+          <object class="GtkLabel" id="label1bis">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">0</property>
+          </object>
+          <packing>
+            <property name="x">265</property>
+            <property name="y">40</property>
+          </packing>
+        </child>
       </object>
     </child>
   </object>

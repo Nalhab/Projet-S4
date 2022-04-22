@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <err.h>
+#include <unistd.h>
 #include <gtk/gtk.h>
 #include <gtk/gtkx.h>
 
@@ -26,12 +27,21 @@ GtkWidget* icon9;
 GtkWidget* icon10;
 GtkWidget* icon11;
 GtkWidget* icon12;
+GtkWidget* label1bis;
 
 // VARIABLES FOR ALGORITHMS
 
 int nbOfHumans = 5;
 int nbOfAttractions = 2;
 int isRaining = 0; // 1 -> False    0 -> True
+
+void updateLabel(GtkLabel *sum, int num)
+{
+    gchar *display;
+    display = g_strdup_printf("%d", num);         //convert num to str
+    gtk_label_set_text (GTK_LABEL(sum), display); //set label to "display"
+    g_free(display);                              //free display
+}
 
 int main(int agrc, char* argv[])
 {
@@ -65,6 +75,7 @@ int main(int agrc, char* argv[])
     icon10 = GTK_WIDGET(gtk_builder_get_object(builder, "icon10"));
     icon11 = GTK_WIDGET(gtk_builder_get_object(builder, "icon11"));
     icon12 = GTK_WIDGET(gtk_builder_get_object(builder, "icon12"));
+    label1bis = GTK_WIDGET(gtk_builder_get_object(builder, "label1bis"));
 
     gtk_widget_show(window1);
 
@@ -110,3 +121,8 @@ void on_check1_toggled(GtkCheckButton* check)
     else
         isRaining = 0;
 }
+
+// WHEN SOMEONE GOES IN THE ATTRACTION
+/*int num = atoi(gtk_label_get_text(GTK_LABEL(label1bis)));
+    num += 1;
+    updateLabel(GTK_LABEL(label1bis), num);*/
