@@ -5,15 +5,27 @@
 #include <gtk/gtkx.h>
 
 GtkWidget* window1;
-GtkWidget* window2;
 GtkWidget* fixed1;
-GtkWidget* fixed2;
 GtkWidget* button1;
 GtkWidget* check1;
 GtkWidget* spin1;
 GtkWidget* spin2;
 GtkBuilder* builder;
 
+GtkWidget* window2;
+GtkWidget* fixed2;
+GtkWidget* icon1;
+GtkWidget* icon2;
+GtkWidget* icon3;
+GtkWidget* icon4;
+GtkWidget* icon5;
+GtkWidget* icon6;
+GtkWidget* icon7;
+GtkWidget* icon8;
+GtkWidget* icon9;
+GtkWidget* icon10;
+GtkWidget* icon11;
+GtkWidget* icon12;
 
 // VARIABLES FOR ALGORITHMS
 
@@ -41,6 +53,18 @@ int main(int agrc, char* argv[])
     check1 = GTK_WIDGET(gtk_builder_get_object(builder, "check1"));
     spin1 = GTK_WIDGET(gtk_builder_get_object(builder, "spin1"));
     spin2 = GTK_WIDGET(gtk_builder_get_object(builder, "spin2"));
+    icon1 = GTK_WIDGET(gtk_builder_get_object(builder, "icon1"));
+    icon2 = GTK_WIDGET(gtk_builder_get_object(builder, "icon2"));
+    icon3 = GTK_WIDGET(gtk_builder_get_object(builder, "icon3"));
+    icon4 = GTK_WIDGET(gtk_builder_get_object(builder, "icon4"));
+    icon5 = GTK_WIDGET(gtk_builder_get_object(builder, "icon5"));
+    icon6 = GTK_WIDGET(gtk_builder_get_object(builder, "icon6"));
+    icon7 = GTK_WIDGET(gtk_builder_get_object(builder, "icon7"));
+    icon8 = GTK_WIDGET(gtk_builder_get_object(builder, "icon8"));
+    icon9 = GTK_WIDGET(gtk_builder_get_object(builder, "icon9"));
+    icon10 = GTK_WIDGET(gtk_builder_get_object(builder, "icon10"));
+    icon11 = GTK_WIDGET(gtk_builder_get_object(builder, "icon11"));
+    icon12 = GTK_WIDGET(gtk_builder_get_object(builder, "icon12"));
 
     gtk_widget_show(window1);
 
@@ -76,7 +100,7 @@ void on_spin2_value_changed(GtkSpinButton* spin)
     nbOfHumans = gtk_spin_button_get_value_as_int(spin);
 }
 
-void on_check1_toggled(GtkCheckButton * check)
+void on_check1_toggled(GtkCheckButton* check)
 {
     // Goes here if weather is changed
 

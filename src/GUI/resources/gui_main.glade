@@ -111,7 +111,7 @@
           </packing>
         </child>
         <child>
-          <object class="GtkLabel">
+          <object class="GtkLabel" id="label4">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="label" translatable="yes">Rain</property>
@@ -154,6 +154,139 @@
       <object class="GtkFixed" id="fixed2">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
+        <child>
+          <object class="GtkImage" id="icon1">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="pixbuf">icons/icon1_resize.png</property>
+          </object>
+          <packing>
+            <property name="x">295</property>
+            <property name="y">30</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkImage" id="icon2">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="pixbuf">icons/icon2_resize.png</property>
+          </object>
+          <packing>
+            <property name="x">455</property>
+            <property name="y">27</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkImage" id="icon3">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="pixbuf">icons/icon3_resize.png</property>
+          </object>
+          <packing>
+            <property name="x">580</property>
+            <property name="y">110</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkImage" id="icon4">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="pixbuf">icons/icon4_resize.png</property>
+          </object>
+          <packing>
+            <property name="x">655</property>
+            <property name="y">172</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkImage" id="icon5">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="tooltip_text" translatable="yes">Hello</property>
+            <property name="pixbuf">icons/icon5_resize.png</property>
+          </object>
+          <packing>
+            <property name="x">655</property>
+            <property name="y">278</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkImage" id="icon6">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="pixbuf">icons/icon6_resize.png</property>
+          </object>
+          <packing>
+            <property name="x">580</property>
+            <property name="y">359</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkImage" id="icon7">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="pixbuf">icons/icon7_resize.png</property>
+          </object>
+          <packing>
+            <property name="x">460</property>
+            <property name="y">430</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkImage" id="icon8">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="pixbuf">icons/icon8_resize.png</property>
+          </object>
+          <packing>
+            <property name="x">295</property>
+            <property name="y">430</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkImage" id="icon9">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="pixbuf">icons/icon9_resize.png</property>
+          </object>
+          <packing>
+            <property name="x">170</property>
+            <property name="y">360</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkImage" id="icon10">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="pixbuf">icons/icon10_resize.png</property>
+          </object>
+          <packing>
+            <property name="x">98</property>
+            <property name="y">280</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkImage" id="icon11">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="pixbuf">icons/icon11_resize.png</property>
+          </object>
+          <packing>
+            <property name="x">100</property>
+            <property name="y">180</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkImage" id="icon12">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="pixbuf">icons/icon12_resize.png</property>
+          </object>
+          <packing>
+            <property name="x">180</property>
+            <property name="y">100</property>
+          </packing>
+        </child>
       </object>
     </child>
   </object>
