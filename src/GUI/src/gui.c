@@ -28,6 +28,18 @@ GtkWidget* icon10;
 GtkWidget* icon11;
 GtkWidget* icon12;
 GtkWidget* label1bis;
+GtkWidget* label2bis;
+GtkWidget* label3bis;
+GtkWidget* label4bis;
+GtkWidget* label5bis;
+GtkWidget* label6bis;
+GtkWidget* label7bis;
+GtkWidget* label8bis;
+GtkWidget* label9bis;
+GtkWidget* label10bis;
+GtkWidget* label11bis;
+GtkWidget* label12bis;
+GtkWidget* labelTimer;
 
 // VARIABLES FOR ALGORITHMS
 
@@ -35,12 +47,60 @@ int nbOfHumans = 5;
 int nbOfAttractions = 2;
 int isRaining = 0; // 1 -> False    0 -> True
 
+GtkWidget* icon[12];
+GtkWidget* label[12];
+
+int nbSeconds = 0;
+
+// + or - nb of people in the attraction
 void updateLabel(GtkLabel *sum, int num)
 {
     gchar *display;
     display = g_strdup_printf("%d", num);         //convert num to str
     gtk_label_set_text (GTK_LABEL(sum), display); //set label to "display"
     g_free(display);                              //free display
+}
+
+//convert label text to an int
+int get_int_from_label(GtkWidget* lb)
+{
+    int num = atoi(gtk_label_get_text(GTK_LABEL(lb)));
+
+    return num;
+}
+
+//create array of the icons
+void create_icon_array(GtkWidget* icon[12])
+{
+    icon[0] = icon1;
+    icon[1] = icon2;
+    icon[2] = icon3;
+    icon[3] = icon4;
+    icon[4] = icon5;
+    icon[5] = icon6;
+    icon[6] = icon7;
+    icon[7] = icon8;
+    icon[8] = icon9;
+    icon[9] = icon10;
+    icon[10] = icon11;
+    icon[11] = icon12;
+}
+
+//create array of the labels
+void create_label_array(GtkWidget* label[12])
+{
+    label[0] = label1bis;
+    label[1] = label2bis;
+    label[2] = label3bis;
+    label[3] = label4bis;
+    label[4] = label5bis;
+    label[5] = label6bis;
+    label[6] = label7bis;
+    label[7] = label8bis;
+    label[8] = label9bis;
+    label[9] = label10bis;
+    label[10] = label11bis;
+    label[11] = label12bis;
 }
 
 int main(int agrc, char* argv[])
@@ -76,6 +136,18 @@ int main(int agrc, char* argv[])
     icon11 = GTK_WIDGET(gtk_builder_get_object(builder, "icon11"));
     icon12 = GTK_WIDGET(gtk_builder_get_object(builder, "icon12"));
     label1bis = GTK_WIDGET(gtk_builder_get_object(builder, "label1bis"));
+    label2bis = GTK_WIDGET(gtk_builder_get_object(builder, "label2bis"));
+    label3bis = GTK_WIDGET(gtk_builder_get_object(builder, "label3bis"));
+    label4bis = GTK_WIDGET(gtk_builder_get_object(builder, "label4bis"));
+    label5bis = GTK_WIDGET(gtk_builder_get_object(builder, "label5bis"));
+    label6bis = GTK_WIDGET(gtk_builder_get_object(builder, "label6bis"));
+    label7bis = GTK_WIDGET(gtk_builder_get_object(builder, "label7bis"));
+    label8bis = GTK_WIDGET(gtk_builder_get_object(builder, "label8bis"));
+    label9bis = GTK_WIDGET(gtk_builder_get_object(builder, "label9bis"));
+    label10bis = GTK_WIDGET(gtk_builder_get_object(builder, "label10bis"));
+    label11bis = GTK_WIDGET(gtk_builder_get_object(builder, "label11bis"));
+    label12bis = GTK_WIDGET(gtk_builder_get_object(builder, "label12bis"));
+    labelTimer = GTK_WIDGET(gtk_builder_get_object(builder, "labelTimer"));
 
     gtk_widget_show(window1);
 
@@ -84,12 +156,36 @@ int main(int agrc, char* argv[])
     return 0;
 }
 
+int TimerCallback()
+{
+    // --- Another second has gone by ---
+    nbSeconds += 1;
+    updateLabel(GTK_LABEL(labelTimer), nbSeconds);
+
+    return 1;
+}
+
 void on_button1_clicked(__attribute__((unused)) GtkButton *button)
 {
     // Start the simulation
 
+    create_icon_array(icon);
+    create_label_array(label);
+
+    for (int i = 11; i > nbOfAttractions - 1; i -= 1)
+    {
+        gtk_widget_hide(icon[i]);
+        gtk_widget_hide(label[i]);
+    }
+
+    //START TIMER
+    g_timeout_add(1000, TimerCallback, NULL);
+
     gtk_widget_hide(window1);
     gtk_widget_show(window2);
+
+    //START ALGORITHMS
+
 
     // TEST :
     //printf("%i\n", nbOfAttractions);
@@ -122,7 +218,7 @@ void on_check1_toggled(GtkCheckButton* check)
         isRaining = 0;
 }
 
-// WHEN SOMEONE GOES IN THE ATTRACTION
-/*int num = atoi(gtk_label_get_text(GTK_LABEL(label1bis)));
-    num += 1;
-    updateLabel(GTK_LABEL(label1bis), num);*/
+//WHEN SOMEONE GO IN ATTRACTION
+/*  int nb = get_int_from_label(label1bis);
+    nb += 1;
+    updateLabel(GTK_LABEL(label1bis), nb);  */

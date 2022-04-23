@@ -26,7 +26,6 @@
         
             Once the program has been compiled, you can run the GUI program :
                 ./gui
-            Then, a window with all options appairs.
             You can refer to "# Description" where all options are described and explained.
 
         # Cleaning :
@@ -36,3 +35,11 @@
 
         
         # Description :
+
+            First, you have to choose the paramaters that you want.
+            When you have finished, click on the button "Start the simulation".
+            A new window will pop with
+
+        # Quiting :
+
+            You can quit the program at any time by clicking on the cross at the top right.
