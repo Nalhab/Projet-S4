@@ -40,6 +40,18 @@ GtkWidget* label10bis;
 GtkWidget* label11bis;
 GtkWidget* label12bis;
 GtkWidget* labelTimer;
+GtkWidget* road1;
+GtkWidget* road2;
+GtkWidget* road3;
+GtkWidget* road4;
+GtkWidget* road5;
+GtkWidget* road6;
+GtkWidget* road7;
+GtkWidget* road8;
+GtkWidget* road9;
+GtkWidget* road10;
+GtkWidget* road11;
+GtkWidget* road12;
 
 // VARIABLES FOR ALGORITHMS
 
@@ -49,8 +61,10 @@ int isRaining = 0; // 1 -> False    0 -> True
 
 GtkWidget* icon[12];
 GtkWidget* label[12];
+GtkWidget* road[12];
 
 int nbSeconds = 0;
+guint threadID = 0;
 
 // + or - nb of people in the attraction
 void updateLabel(GtkLabel *sum, int num)
@@ -103,6 +117,22 @@ void create_label_array(GtkWidget* label[12])
     label[11] = label12bis;
 }
 
+void create_road_array(GtkWidget* road[12])
+{
+    road[0] = road1;
+    road[1] = road2;
+    road[2] = road3;
+    road[3] = road4;
+    road[4] = road5;
+    road[5] = road6;
+    road[6] = road7;
+    road[7] = road8;
+    road[8] = road9;
+    road[9] = road10;
+    road[10] = road11;
+    road[11] = road12;
+}
+
 int main(int agrc, char* argv[])
 {
     gtk_init(&agrc, &argv);
@@ -123,6 +153,7 @@ int main(int agrc, char* argv[])
     check1 = GTK_WIDGET(gtk_builder_get_object(builder, "check1"));
     spin1 = GTK_WIDGET(gtk_builder_get_object(builder, "spin1"));
     spin2 = GTK_WIDGET(gtk_builder_get_object(builder, "spin2"));
+
     icon1 = GTK_WIDGET(gtk_builder_get_object(builder, "icon1"));
     icon2 = GTK_WIDGET(gtk_builder_get_object(builder, "icon2"));
     icon3 = GTK_WIDGET(gtk_builder_get_object(builder, "icon3"));
@@ -135,6 +166,7 @@ int main(int agrc, char* argv[])
     icon10 = GTK_WIDGET(gtk_builder_get_object(builder, "icon10"));
     icon11 = GTK_WIDGET(gtk_builder_get_object(builder, "icon11"));
     icon12 = GTK_WIDGET(gtk_builder_get_object(builder, "icon12"));
+
     label1bis = GTK_WIDGET(gtk_builder_get_object(builder, "label1bis"));
     label2bis = GTK_WIDGET(gtk_builder_get_object(builder, "label2bis"));
     label3bis = GTK_WIDGET(gtk_builder_get_object(builder, "label3bis"));
@@ -148,6 +180,19 @@ int main(int agrc, char* argv[])
     label11bis = GTK_WIDGET(gtk_builder_get_object(builder, "label11bis"));
     label12bis = GTK_WIDGET(gtk_builder_get_object(builder, "label12bis"));
     labelTimer = GTK_WIDGET(gtk_builder_get_object(builder, "labelTimer"));
+
+    road1 = GTK_WIDGET(gtk_builder_get_object(builder, "road1"));
+    road2 = GTK_WIDGET(gtk_builder_get_object(builder, "road2"));
+    road3 = GTK_WIDGET(gtk_builder_get_object(builder, "road3"));
+    road4 = GTK_WIDGET(gtk_builder_get_object(builder, "road4"));
+    road5 = GTK_WIDGET(gtk_builder_get_object(builder, "road5"));
+    road6 = GTK_WIDGET(gtk_builder_get_object(builder, "road6"));
+    road7 = GTK_WIDGET(gtk_builder_get_object(builder, "road7"));
+    road8 = GTK_WIDGET(gtk_builder_get_object(builder, "road8"));
+    road9 = GTK_WIDGET(gtk_builder_get_object(builder, "road9"));
+    road10 = GTK_WIDGET(gtk_builder_get_object(builder, "road10"));
+    road11 = GTK_WIDGET(gtk_builder_get_object(builder, "road11"));
+    road12 = GTK_WIDGET(gtk_builder_get_object(builder, "road12"));
 
     gtk_widget_show(window1);
 
@@ -171,15 +216,25 @@ void on_button1_clicked(__attribute__((unused)) GtkButton *button)
 
     create_icon_array(icon);
     create_label_array(label);
+    create_road_array(road);
+
+    for (int i = 11; i >  1; i -= 1)
+    {
+        gtk_widget_show(icon[i]);
+        gtk_widget_show(label[i]);
+        gtk_widget_show(road[i]);
+    }
 
     for (int i = 11; i > nbOfAttractions - 1; i -= 1)
     {
         gtk_widget_hide(icon[i]);
         gtk_widget_hide(label[i]);
+        gtk_widget_hide(road[i]);
     }
 
     //START TIMER
-    g_timeout_add(1000, TimerCallback, NULL);
+    nbSeconds = 0;
+    threadID = g_timeout_add(1000, TimerCallback, NULL);
 
     gtk_widget_hide(window1);
     gtk_widget_show(window2);
@@ -188,9 +243,9 @@ void on_button1_clicked(__attribute__((unused)) GtkButton *button)
 
 
     // TEST :
-    //printf("%i\n", nbOfAttractions);
     //printf("%i\n", nbOfHumans);
     //printf("%i\n", isRaining);
+    //printf("%i\n", nbOfAttractions);
 }
 
 void on_spin1_value_changed(GtkSpinButton* spin)
@@ -218,7 +273,14 @@ void on_check1_toggled(GtkCheckButton* check)
         isRaining = 0;
 }
 
-//WHEN SOMEONE GO IN ATTRACTION
+void on_button1bis_clicked()
+{
+    gtk_widget_show(window1);
+    gtk_widget_hide(window2);
+    g_source_remove(threadID);
+}
+
+//WHEN SOMEONE GOES IN AN ATTRACTION
 /*  int nb = get_int_from_label(label1bis);
     nb += 1;
     updateLabel(GTK_LABEL(label1bis), nb);  */
