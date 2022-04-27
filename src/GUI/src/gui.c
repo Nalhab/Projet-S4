@@ -4,9 +4,12 @@
 #include <unistd.h>
 #include <gtk/gtk.h>
 #include <gtk/gtkx.h>
+#include <gdk/gdkscreen.h>
+#include <cairo.h>
 
 GtkWidget* window1;
 GtkWidget* fixed1;
+
 GtkWidget* button1;
 GtkWidget* check1;
 GtkWidget* spin1;
@@ -15,6 +18,7 @@ GtkBuilder* builder;
 
 GtkWidget* window2;
 GtkWidget* fixed2;
+
 GtkWidget* icon1;
 GtkWidget* icon2;
 GtkWidget* icon3;
@@ -27,6 +31,7 @@ GtkWidget* icon9;
 GtkWidget* icon10;
 GtkWidget* icon11;
 GtkWidget* icon12;
+
 GtkWidget* label1bis;
 GtkWidget* label2bis;
 GtkWidget* label3bis;
@@ -40,6 +45,7 @@ GtkWidget* label10bis;
 GtkWidget* label11bis;
 GtkWidget* label12bis;
 GtkWidget* labelTimer;
+
 GtkWidget* road1;
 GtkWidget* road2;
 GtkWidget* road3;
@@ -52,6 +58,25 @@ GtkWidget* road9;
 GtkWidget* road10;
 GtkWidget* road11;
 GtkWidget* road12;
+
+GtkDrawingArea* GDA;
+
+// NEEDED STRUCTS
+
+typedef struct Disc
+{
+    GdkRectangle rect;              // Position and size
+    GdkPoint step;                  // Horizontal and verical steps in pixels
+    guint period;                   // Period in milliseconds
+    guint event;                    // Event ID used to move the disc
+} Disc;
+
+typedef struct Game
+{
+    Disc disc;                      // Disc
+} Game;
+
+Game* r;
 
 // VARIABLES FOR ALGORITHMS
 
@@ -133,12 +158,27 @@ void create_road_array(GtkWidget* road[12])
     road[11] = road12;
 }
 
+// Signal handler for the "draw" signal of the drawing area.
+gboolean on_draw(__attribute__((unused)) GtkWidget *widget, cairo_t *cr, gpointer user_data)
+{
+    // Gets the rectangle.
+    r = user_data;
+
+    // Draws the rectangle in red.
+    cairo_set_source_rgb(cr, 1, 0, 0);
+    cairo_rectangle(cr, r->disc.rect.x, r->disc.rect.y, r->disc.rect.width, r->disc.rect.height);
+    cairo_fill(cr);
+
+    // Propagates the signal.
+    return 1;
+}
+
 int main(int agrc, char* argv[])
 {
     gtk_init(&agrc, &argv);
 
     builder = gtk_builder_new_from_file("resources/gui_main.glade");
-    
+
     window1 = GTK_WIDGET(gtk_builder_get_object(builder, "window1"));
     window2 = GTK_WIDGET(gtk_builder_get_object(builder, "window2"));
 
@@ -146,6 +186,11 @@ int main(int agrc, char* argv[])
     g_signal_connect(window2, "destroy", G_CALLBACK(gtk_main_quit), NULL);
 
     gtk_builder_connect_signals(builder, NULL);
+
+    // Creates a rectangle.
+    GdkRectangle rect = { 391, 221, 9, 9 };
+    GDA = GTK_DRAWING_AREA(gtk_builder_get_object(builder, "GDA"));
+    g_signal_connect(GDA, "draw", G_CALLBACK(on_draw), &rect);
 
     fixed1 = GTK_WIDGET(gtk_builder_get_object(builder, "fixed1"));
     fixed2 = GTK_WIDGET(gtk_builder_get_object(builder, "fixed1"));
@@ -239,6 +284,8 @@ void on_button1_clicked(__attribute__((unused)) GtkButton *button)
     gtk_widget_hide(window1);
     gtk_widget_show(window2);
 
+    gtk_widget_show(icon1);
+
     //START ALGORITHMS
 
 
@@ -278,6 +325,8 @@ void on_button1bis_clicked()
     gtk_widget_show(window1);
     gtk_widget_hide(window2);
     g_source_remove(threadID);
+    r->disc.rect.x =  391;
+    r->disc.rect.y = 221;
 }
 
 //WHEN SOMEONE GOES IN AN ATTRACTION
