@@ -251,7 +251,8 @@ int TimerCallback()
     return 1;
 }
 
-//toutes les 5s att->capacity personne sortent de l'att et retourne dans une autre attractions
+//toutes les 5s att->capacity personne sortent de l'att et retourne
+//dans une autre attractions
 int loop2(parc* parc)
 {
     attraction** atts = parc->att;
