@@ -7,7 +7,7 @@
 #include <gdk/gdkscreen.h>
 #include <cairo.h>
 #include "move.h"
-#include "population.h"
+#include "../../IA/src/population.h"
 
 GtkWidget* window1;
 GtkWidget* fixed1;
@@ -251,6 +251,52 @@ int TimerCallback()
     return 1;
 }
 
+//toutes les 5s att->capacity personne sortent de l'att et retourne dans une autre attractions
+int loop2(parc* parc)
+{
+    attraction** atts = parc->att;
+    attraction* att = *atts;
+    //nbr de tour de boucle
+    size_t lp = 0;
+    
+    lp++;
+    printf("%ld\n", lp);
+    print_parc(parc);
+    srand(time(NULL));
+    sleep(2);
+    for(size_t i = 0; i < parc->nbatt; i++)
+    {
+        att = *(atts+i);
+        for (size_t j = 0; j < att->capacity && att->nbpeople > 0; j++)
+        {
+            dest(parc);
+            att->nbpeople--;
+        }
+    }
+    att = *(atts + parc->nbatt);
+    att->likeness += 3;
+    parc->totlikeness += 3;
+    
+    if (parc->nbpeople > 0)
+    {
+        parc->nbpeople = 0;
+
+    }
+
+    return 1;
+}
+
+int timeoutLabel(parc* parc)
+{
+    for(size_t i = 0; i < parc->nbatt; i++)
+    {
+        attraction* att = *(parc->att+i);
+        updateLabel(GTK_LABEL(label[i]), att->nbpeople);
+    }
+
+    return 1;
+}
+
 void on_button1_clicked(__attribute__((unused)) GtkButton *button)
 {
     // Start the simulation
@@ -284,12 +330,12 @@ void on_button1_clicked(__attribute__((unused)) GtkButton *button)
     
     parc* parc = init_parc(nbOfAttractions);
     pop_init(200, parc);
-    for(size_t i = 0; i < parc->nbatt; i++)
-    {
-        attraction* att = *(parc->att+i);
-        updateLabel(label[i] ,att->nbpeople);
-    } 
+
+    //g_timeout_add(500, timeoutLabel, parc);
+
     //START ALGORITHMS
+
+    //g_timeout_add(500, loop2, parc);
 
     // TEST :
     //printf("%i\n", nbOfHumans);

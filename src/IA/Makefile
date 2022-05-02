@@ -1,21 +1,26 @@
-#Makefile
-
 CC = gcc
-CFLAGS = -Wall -Wextra -g
 
-EXE = attraction population
+EXEC = attraction population
 
-all: ${EXE}
+CFLAGS = -Wall -Wextra
 
-attraction: attraction.o 
-population: attraction.o population.o
-#attraction.o: attraction.c attraction.h
-#population.o: population.c attraction.h
+SRCDIR = src/
+OBJDIR = obj/
+
+SRCS=$(shell ls $(SRCDIR)*.c)
+OBJS=$(subst .c,.o,$(subst $(SRCDIR),$(OBJDIR),$(SRCS)))
 
 
-.PHONY: clean
+all: $(EXEC)
+ 
+$(EXEC): $(OBJS)
+	$(CC) -o $@ $(OBJS) $(CFLAGS)
+
+$(OBJDIR)%.o: $(SRCDIR)%.c
+	mkdir -p $(OBJDIR)
+	$(CC) -c -o $@ $< $(CFLAGS)
+
 
 clean:
-	${RM} ${EXE} attraction.o population.o
-
-#END
+	rm -fr $(EXEC)
+	rm -fr $(OBJDIR)
