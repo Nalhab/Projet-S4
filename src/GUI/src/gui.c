@@ -7,6 +7,7 @@
 #include <gdk/gdkscreen.h>
 #include <cairo.h>
 #include "move.h"
+#include "population.h"
 
 GtkWidget* window1;
 GtkWidget* fixed1;
@@ -280,7 +281,14 @@ void on_button1_clicked(__attribute__((unused)) GtkButton *button)
     gtk_widget_show(window2);
 
     gtk_widget_show(icon1);
-
+    
+    parc* parc = init_parc(nbOfAttractions);
+    pop_init(200, parc);
+    for(size_t i = 0; i < parc->nbatt; i++)
+    {
+        attraction* att = *(parc->att+i);
+        updateLabel(label[i] ,att->nbpeople);
+    } 
     //START ALGORITHMS
 
     // TEST :
