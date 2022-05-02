@@ -84,7 +84,7 @@ void loop(parc* parc)
 //en mettant une variable dans le sleep
 
 
-int main(void)
+/*int main(void)
 {
     parc* parc = init_parc(5);
     pop_init(200, parc);
@@ -92,7 +92,7 @@ int main(void)
     print_parc(parc);
     loop(parc);   
 }
-
+*/
 //pour plus tard
 /*
 time_t t;
