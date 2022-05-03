@@ -49,6 +49,7 @@ GtkWidget* label10bis;
 GtkWidget* label11bis;
 GtkWidget* label12bis;
 GtkWidget* labelTimer;
+GtkWidget* labelHumans;
 
 GtkWidget* road1;
 GtkWidget* road2;
@@ -69,12 +70,16 @@ int nbOfHumans = 5;
 int nbOfAttractions = 2;
 int isRaining = 0; // 1 -> False    0 -> True
 
+parc* parcGUI;
+
 GtkWidget* icon[12];
 GtkWidget* label[12];
 GtkWidget* road[12];
 
 int nbSeconds = 0;
 guint threadID = 0;
+guint humanID = 0;
+guint iaID = 0;
 
 // ------------------------------------------
 
@@ -211,6 +216,7 @@ int main(int agrc, char* argv[])
     label11bis = GTK_WIDGET(gtk_builder_get_object(builder, "label11bis"));
     label12bis = GTK_WIDGET(gtk_builder_get_object(builder, "label12bis"));
     labelTimer = GTK_WIDGET(gtk_builder_get_object(builder, "labelTimer"));
+    labelHumans = GTK_WIDGET(gtk_builder_get_object(builder, "labelHumans"));
 
     road1 = GTK_WIDGET(gtk_builder_get_object(builder, "road1"));
     road2 = GTK_WIDGET(gtk_builder_get_object(builder, "road2"));
@@ -248,54 +254,62 @@ int TimerCallback()
     nbSeconds += 1;
     updateLabel(GTK_LABEL(labelTimer), nbSeconds);
 
-    return 1;
+    if (nbOfHumans == 0)
+        return 0;
+    else
+        return 1;
 }
 
 //toutes les 5s att->capacity personne sortent de l'att et retourne
 //dans une autre attractions
-int loop2(parc* parc)
+int loop2()
 {
-    attraction** atts = parc->att;
+    attraction** atts = parcGUI->att;
     attraction* att = *atts;
-    //nbr de tour de boucle
-    size_t lp = 0;
-    
-    lp++;
-    printf("%ld\n", lp);
-    print_parc(parc);
-    srand(time(NULL));
-    sleep(2);
-    for(size_t i = 0; i < parc->nbatt; i++)
+    //srand(time(NULL));
+    //sleep(2);
+
+    for(size_t i = 0; i < parcGUI->nbatt; i++)
     {
         att = *(atts+i);
+
         for (size_t j = 0; j < att->capacity && att->nbpeople > 0; j++)
         {
-            dest(parc);
+            dest(parcGUI);
             att->nbpeople--;
         }
     }
-    att = *(atts + parc->nbatt);
+
+    att = *(atts + parcGUI->nbatt);
     att->likeness += 3;
-    parc->totlikeness += 3;
+    parcGUI->totlikeness += 3;
     
-    if (parc->nbpeople > 0)
-    {
-        parc->nbpeople = 0;
-
-    }
-
-    return 1;
+    if (parcGUI->nbpeople > 0)
+        parcGUI->nbpeople = 0;
+    
+    if (nbOfHumans == 0)
+        return 0;
+    else
+        return 1;
 }
 
-int timeoutLabel(parc* parc)
+int timeoutLabel()
 {
-    for(size_t i = 0; i < parc->nbatt; i++)
+    nbOfHumans = 0;
+
+    for(size_t i = 0; i < parcGUI->nbatt; i++)
     {
-        attraction* att = *(parc->att+i);
+        attraction* att = *(parcGUI->att+i);
         updateLabel(GTK_LABEL(label[i]), att->nbpeople);
+        nbOfHumans += att->nbpeople;
     }
 
-    return 1;
+    updateLabel(GTK_LABEL(labelHumans), nbOfHumans);
+
+    if (nbOfHumans == 0)
+        return 0;
+    else
+        return 1;
 }
 
 void on_button1_clicked(__attribute__((unused)) GtkButton *button)
@@ -322,21 +336,21 @@ void on_button1_clicked(__attribute__((unused)) GtkButton *button)
 
     //START TIMER
     nbSeconds = 0;
+    updateLabel(GTK_LABEL(labelTimer), nbSeconds);
     threadID = g_timeout_add(1000, TimerCallback, NULL);
 
     gtk_widget_hide(window1);
     gtk_widget_show(window2);
 
     gtk_widget_show(icon1);
-    
-    parc* parc = init_parc(nbOfAttractions);
-    pop_init(200, parc);
-
-    //g_timeout_add(500, timeoutLabel, parc);
 
     //START ALGORITHMS
 
-    //g_timeout_add(500, loop2, parc);
+    parcGUI = init_parc(nbOfAttractions);
+    pop_init(nbOfHumans, parcGUI);
+    timeoutLabel();
+    humanID = g_timeout_add(500, timeoutLabel, NULL);
+    iaID = g_timeout_add(2000, loop2, NULL);
 
     // TEST :
     //printf("%i\n", nbOfHumans);
@@ -374,6 +388,8 @@ void on_button1bis_clicked()
     gtk_widget_show(window1);
     gtk_widget_hide(window2);
     g_source_remove(threadID);
+    g_source_remove(humanID);
+    g_source_remove(iaID);
     game.disc.rect.x = 391;
     game.disc.rect.y = 221;
 }
