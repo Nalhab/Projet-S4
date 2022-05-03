@@ -38,37 +38,57 @@
 
             First, you have to choose the paramaters that you want.
             When you have finished, click on the button "Start the simulation".
-            A new window will pop with
+            A new window will pop with several options.
+            On top left there are 2 numbers :
+            	- time
+            	- people remaining
+            These numbers are usefull to see how the simulation evolves.
+            Also, you can see from 2 to 12 attractions, depending the number you chosed
+            in the parameters window. Next to each attractions there is a number which
+            represents the number of people that are in the attraction.
+            On right top oyou can see a button named "Go to menu" that is usefull to stop
+            the simulation and go back to the menu if you want to change parameters and
+            start again.
+
 
         # Quiting :
 
             You can quit the program at any time by clicking on the cross at the top right.
 	   
+
    ## Algorithm :
+
+
         # Compilation :
-           Go to the Algo directory :
-                   src/Algo/
-           Then to compile the program and generate the executable file :
-                   make
-           When you compile theses files are used :
-                   -List.h
-                   -Graph.h
-                   -Floyd.c
-           Dijkstra.c is not use and we won't compile it for the first defense.
-           We will speak about this one for the next one.
+
+           	Go to the Algo directory :
+             	src/Algo/
+           	Then to compile the program and generate the executable file :
+           		make
+           	When you compile theses files are used :
+              	- List.h
+            	- Graph.h
+          		- Floyd.c
+           	Dijkstra.c is not use and we won't compile it for the first defense.
+           	We will speak about this one for the next one.
+
 
         # Execution :
-           Once the program has been compiled, you can run the Floyd program:
-                   ./Floyd
-           You can refer to "# Description" where all results are described and explained.
+
+           	Once the program has been compiled, you can run the Floyd program:
+              	./Floyd
+           	You can refer to "# Description" where all results are described and explained.
+
 
         # Cleaning :
 
-           You can clean all created files by typing :
-                   make clean
+           	You can clean all created files by typing :
+     	   		make clean
+
 
         # Description :
-           First part you can see all edges of the graph we created.
-           Second part you can see the result of the Floyd algorithm.
-           It is a matrice where there are distances of each vertices from one of them.
-           For example the first line is the distance of each vertices from the first one.
+
+           	First part you can see all edges of the graph we created.
+           	Second part you can see the result of the Floyd algorithm.
+           	It is a matrice where there are distances of each vertices from one of them.
+           	For example the first line is the distance of each vertices from the first one.
