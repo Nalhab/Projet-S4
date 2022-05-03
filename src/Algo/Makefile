@@ -2,7 +2,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra
 
 all: Dijkstra 
-Floyd : Floyd.o Graph.o
+Floyd : Floyd.o Graph.o List.o
 Dijkstra : Dijkstra.o Graph.o 
 Graph: Graph.o List.o
 List: List.o

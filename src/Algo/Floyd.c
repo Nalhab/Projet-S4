@@ -5,7 +5,7 @@
 
 void printMatrix(int matrix[][len]);
 
-void floydWarshall(int graph[][len]) 
+void floydWarshall(int** graph) 
 {
 	int res[len][len];
        	int i, j, k;
@@ -45,16 +45,22 @@ void printMatrix(int matrix[][len])
 
 int main() {
 	//All edges of the Graph
-	struct Edge edges[] =
+        struct Edge edges[] =
             {
                     {0, 1, 1}, {1, 2, 2}, {2, 3, 3}, {3, 4, 4}, {4, 0, 5}
             };
+	int n = sizeof(edges)/sizeof(edges[0]);
+    	struct list* List = malloc(sizeof(struct list));
+        List->data = edges[0];
+	for(int i = 1; i < n; i++)
+        {
+                struct list* nList = malloc(sizeof(struct list));
+                nList->data = edges[i];
+                list_push_front(List, nList);
+        } 
         
-	// calculate the total number of edges
-        int n = sizeof(edges)/sizeof(edges[0]);
-        
-	struct Graph *graph = createGraph(edges, n);
-	
+	struct Graph *graph = createGraph(n, List);
+
 	//set all 0 to Inf
 	for(int i = 0; i < len; i++)
 	{

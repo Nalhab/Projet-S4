@@ -5,7 +5,7 @@ void list_init(struct list *list)
 {
     list->next = NULL;
 }
-
+/*
 int list_is_empty(struct list *list)
 {
     return list->next == NULL;
@@ -21,7 +21,7 @@ size_t list_len(struct list *list)
     }
     return i;
 }
-
+*/
 void list_push_front(struct list *list, struct list *elm)
 {
     struct list *l = list->next;
@@ -32,7 +32,7 @@ void list_push_front(struct list *list, struct list *elm)
     }
     elm->next = l;
 }
-
+/*
 struct list *list_pop_front(struct list *list)
 {
     list->next = NULL;
@@ -61,4 +61,4 @@ void list_insert(struct list *list, struct list *elm)
     struct list *nextv = tmp->next;
     tmp->next = elm;
     elm->next = nextv;
-}
+}*/

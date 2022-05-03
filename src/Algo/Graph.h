@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "List.h"
+
 // Define the maximum number of vertices in the graph
 #define N 5 
 
@@ -7,10 +9,10 @@
 struct Graph
 {
     // An array of pointers to Node to represent an adjacency list
-    struct Node* head[N];
+    struct Node** head;//[N];
 
     int order;// = sizeof(head) / sizeof(struct Node);
-	int adjLists[N][N];
+    int** adjLists;//[N][N];
 };
 
 // Data structure to store adjacency list nodes of the graph
@@ -21,12 +23,12 @@ struct Node
 };
 
 // Data structure to store a graph edge
-struct Edge {
+/*struct Edge {
     int src, dest, cost;
-};
+};*/
 
 // Function to create an adjacency list from specified edges
-struct Graph* createGraph(struct Edge edges[], int n);
+struct Graph* createGraph(int n, struct list* List);
 
 // Function to print adjacency list representation of a graph
 void printGraph(struct Graph* graph);
