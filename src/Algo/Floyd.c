@@ -32,6 +32,7 @@ void printMatrix(int matrix[][len])
 {
 	for (int i = 0; i < len; i++) 
 	{
+		printf("Dist from vertex number %d-->  ", i);
 		for (int j = 0; j < len; j++)
 		{
 			if (matrix[i][j] == INF) 
@@ -60,7 +61,8 @@ int main() {
         } 
         
 	struct Graph *graph = createGraph(n, List);
-
+	printf("Edges of the Graph :\n\n");
+	printGraph(graph);
 	//set all 0 to Inf
 	for(int i = 0; i < len; i++)
 	{
@@ -70,7 +72,8 @@ int main() {
 				graph->adjLists[i][j] = INF;
 		}
 	}
-
+	printf("\n");
+	printf("Result of the Floyd algorithm :\n\n");
 	//call Floyd function
 	floydWarshall(graph->adjLists, n);
 }
