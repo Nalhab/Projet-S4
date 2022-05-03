@@ -5,20 +5,20 @@
 
 void printMatrix(int matrix[][len]);
 
-void floydWarshall(int** graph) 
+void floydWarshall(int** graph, int n) 
 {
-	int res[len][len];
+	int res[n][n];
        	int i, j, k;
 	
-	for (i = 0; i < len; i++)
-		for (j = 0; j < len; j++)
+	for (i = 0; i < n; i++)
+		for (j = 0; j < n; j++)
 			res[i][j] = graph[i][j];
 
-	for (k = 0; k < len; k++) 
+	for (k = 0; k < n; k++) 
 	{
-		for (i = 0; i < len; i++) 
+		for (i = 0; i < n; i++) 
 		{
-			for (j = 0; j < len; j++) 
+			for (j = 0; j < n; j++) 
 			{
 				if (res[i][k] + res[k][j] < res[i][j])
 					res[i][j] = res[i][k] + res[k][j];
@@ -72,5 +72,5 @@ int main() {
 	}
 
 	//call Floyd function
-	floydWarshall(graph->adjLists);
+	floydWarshall(graph->adjLists, n);
 }
