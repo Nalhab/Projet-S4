@@ -77,6 +77,8 @@ GtkWidget* buttonIcon10;
 GtkWidget* buttonIcon11;
 GtkWidget* buttonIcon12;
 
+GtkWidget* temp;
+
 // VARIABLES FOR ALGORITHMS -----------------
 
 int nbOfHumans = 5;
@@ -276,12 +278,15 @@ int main(int agrc, char* argv[])
 
     button1bis = GTK_WIDGET(gtk_builder_get_object(builder, "button1bis"));
 
+    temp = GTK_WIDGET(gtk_builder_get_object(builder, "temp"));
+
     gtk_widget_show(window1);
 
     //TEMPORARY//TEMPORARY//TEMPORARY//TEMPORARY
+    g_signal_connect(temp, "clicked", G_CALLBACK(on_start), &game);
     //TO START
-    g_signal_connect(button1, "clicked", G_CALLBACK(on_start), &game);
-    g_signal_connect(button1bis, "clicked", G_CALLBACK(on_start), &game);
+    //g_signal_connect(button1, "clicked", G_CALLBACK(on_start), &game);
+    //g_signal_connect(button1bis, "clicked", G_CALLBACK(on_start), &game);
     // TO STOP
     // g_source_remove(game->disc.event);
     // game->disc.event = 0;
@@ -441,6 +446,12 @@ void on_button1bis_clicked()
     g_source_remove(iaID);
     game.disc.rect.x = 390;
     game.disc.rect.y = 110;
+
+    //TEMP
+    g_source_remove(game.disc.event);
+    game.disc.event = 0;
+    game.disc.step.x = 1;
+    game.disc.step.y = -1;
 }
 
 void on_buttonIcon1_clicked()

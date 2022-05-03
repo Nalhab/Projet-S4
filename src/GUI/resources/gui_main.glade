@@ -784,6 +784,19 @@
             <property name="y">100</property>
           </packing>
         </child>
+        <child>
+          <object class="GtkButton" id="temp">
+            <property name="label" translatable="yes">
+</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+          </object>
+          <packing>
+            <property name="x">20</property>
+            <property name="y">440</property>
+          </packing>
+        </child>
       </object>
     </child>
   </object>
