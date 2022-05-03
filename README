@@ -43,3 +43,32 @@
         # Quiting :
 
             You can quit the program at any time by clicking on the cross at the top right.
+	   
+   ## Algorithm :
+        # Compilation :
+           Go to the Algo directory :
+                   src/Algo/
+           Then to compile the program and generate the executable file :
+                   make
+           When you compile theses files are used :
+                   -List.h
+                   -Graph.h
+                   -Floyd.c
+           Dijkstra.c is not use and we won't compile it for the first defense.
+           We will speak about this one for the next one.
+
+        # Execution :
+           Once the program has been compiled, you can run the Floyd program:
+                   ./Floyd
+           You can refer to "# Description" where all results are described and explained.
+
+        # Cleaning :
+
+           You can clean all created files by typing :
+                   make clean
+
+        # Description :
+           First part you can see all edges of the graph we created.
+           Second part you can see the result of the Floyd algorithm.
+           It is a matrice where there are distances of each vertices from one of them.
+           For example the first line is the distance of each vertices from the first one.
