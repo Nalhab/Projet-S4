@@ -1,13 +1,9 @@
-#include "attraction.h"
+#include "../population.h"
 
 int main(void)
 {
     parc* parc = init_parc(5);
     pop_init(200, parc);
-
-    loop(parc);
-
-    return 0;
+    print_parc(parc);
+    loop(parc);   
 }
-
-
