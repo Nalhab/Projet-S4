@@ -21,12 +21,14 @@ COLOR_WHITE = \e[1;37m
 all: $(EXEC)
 
 $(EXEC): $(OBJS)
-	$(CC) -o $@ $(OBJS) $(CFLAGS) $(LDLIBS)
+	$(CC) -o $@ $(OBJS) obj/population.o obj/attraction.o $(CFLAGS) $(LDLIBS)
 	@echo "\n$(COLOR_GREEN)>>> GUI : $(COLOR_WHITE)Program has been successfully compiled!\n"
 
 $(OBJDIR)%.o: $(SRCDIR)%.c
 	@echo "\n$(COLOR_CYAN)>>> GUI : $(COLOR_WHITE)Compilation of the program will begin.$(COLOR_GRAY)\n"
 	mkdir -p $(OBJDIR)
+	$(CC) -c -o obj/attraction.o ../IA/src/attraction.c $(CFLAGS)
+	$(CC) -c -o obj/population.o ../IA/src/population.c $(CFLAGS)
 	$(CC) -c -o $@ $< $(CFLAGS) $(LDLIBS)
 
 clean:

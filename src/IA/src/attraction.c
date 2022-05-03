@@ -67,11 +67,3 @@ void print_parc(parc* parc)
     printf("person in parc : %ld\n", parc->nbpeople);
     printf("parc total likeness = %ld\n", parc->totlikeness);
 }
-
-//test parc
-/*int main(void)
-{
-    parc* parc = init_parc(5);
-    print_parc(parc);
-    return 0;
-}*/

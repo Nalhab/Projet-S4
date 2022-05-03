@@ -1,26 +1,30 @@
 CC = gcc
 
-EXEC = attraction population
+EXEC = main
 
 CFLAGS = -Wall -Wextra
 
-SRCDIR = src/
+SRCDIR = src/main/
+IADIR = src/
 OBJDIR = obj/
 
-SRCS=$(shell ls $(SRCDIR)*.c)
-OBJS=$(subst .c,.o,$(subst $(SRCDIR),$(OBJDIR),$(SRCS)))
-
+SRCS :=$(shell ls $(SRCDIR)*.c)
+OBJS =$(subst .c,.o,$(subst $(SRCDIR),$(OBJDIR),$(SRCS)))
 
 all: $(EXEC)
  
 $(EXEC): $(OBJS)
-	$(CC) -o $@ $(OBJS) $(CFLAGS)
+	$(CC) -o $@ $(OBJS) obj/population.o obj/attraction.o $(CFLAGS)
 
 $(OBJDIR)%.o: $(SRCDIR)%.c
 	mkdir -p $(OBJDIR)
+	$(CC) -c -o obj/attraction.o src/attraction.c $(CFLAGS)
+	$(CC) -c -o obj/population.o src/population.c $(CFLAGS)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
 
 clean:
 	rm -fr $(EXEC)
 	rm -fr $(OBJDIR)
+	rm -fr src/population.o
+	rm -fr src/attraction.o
