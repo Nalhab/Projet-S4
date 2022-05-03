@@ -26,5 +26,3 @@ $(OBJDIR)%.o: $(SRCDIR)%.c
 clean:
 	rm -fr $(EXEC)
 	rm -fr $(OBJDIR)
-	rm -fr src/population.o
-	rm -fr src/attraction.o
