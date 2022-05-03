@@ -38,14 +38,16 @@
 //           y = 163
 
 // Signal handler for the "draw" signal of the drawing area.
-gboolean on_draw(__attribute__((unused)) GtkWidget *widget, cairo_t *cr, gpointer user_data)
+gboolean on_draw(__attribute__((unused)) GtkWidget *widget, cairo_t *cr, 
+    gpointer user_data)
 {
     // Gets the rectangle.
     Game* game = user_data;
 
     // Draws the rectangle in red.
     cairo_set_source_rgb(cr, 1, 0, 0);
-    cairo_rectangle(cr, game->disc.rect.x, game->disc.rect.y, game->disc.rect.width, game->disc.rect.height);
+    cairo_rectangle(cr, game->disc.rect.x, game->disc.rect.y,
+        game->disc.rect.width, game->disc.rect.height);
     cairo_fill(cr);
 
     // Propagates the signal.
@@ -55,7 +57,8 @@ gboolean on_draw(__attribute__((unused)) GtkWidget *widget, cairo_t *cr, gpointe
 void redraw_item(GtkDrawingArea *area, GdkRectangle *old, GdkRectangle *new)
 {
     gdk_rectangle_union(old, new, old);
-    gtk_widget_queue_draw_area(GTK_WIDGET(area), old->x, old->y, old->width, old->height);
+    gtk_widget_queue_draw_area(GTK_WIDGET(area), old->x, old->y, old->width,
+        old->height);
 }
 
 gboolean on_move_disc(gpointer user_data)
@@ -100,7 +103,7 @@ gboolean on_move_disc(gpointer user_data)
         if (game->disc.step.y == -1)
             game->disc.step.x *= -1;
     
-    //TESTS//TESTS//TESTS//TESTS//TESTS//TESTS//TESTS//TESTS//TESTS//TESTS//TESTS
+    //TESTS//TESTS//TESTS//TESTS//TESTS//TESTS//TESTS//TESTS//TESTS//TESTS
     /*if (game->disc.rect.x == 310 && game->disc.rect.y == 110)
     {
         g_source_remove(game->disc.event);
@@ -185,11 +188,13 @@ gboolean on_move_disc(gpointer user_data)
         sleep(1);
         game->disc.event = g_timeout_add(game->disc.period, on_move_disc, game);
     }*/
-    //TESTS//TESTS//TESTS//TESTS//TESTS//TESTS//TESTS//TESTS//TESTS//TESTS//TESTS
+    //TESTS//TESTS//TESTS//TESTS//TESTS//TESTS//TESTS//TESTS//TESTS//TESTS
 
     // Works out the new position of the disc.
-    game->disc.rect.x = CLAMP(game->disc.rect.x + game->disc.step.x, 193, x_max);
-    game->disc.rect.y = CLAMP(game->disc.rect.y + game->disc.step.y, 110, y_max);
+    game->disc.rect.x = CLAMP(game->disc.rect.x + game->disc.step.x, 193,
+        x_max);
+    game->disc.rect.y = CLAMP(game->disc.rect.y + game->disc.step.y, 110,
+        y_max);
 
     // Redraws the disc.
     redraw_item(game->ui.area, &old, &game->disc.rect);

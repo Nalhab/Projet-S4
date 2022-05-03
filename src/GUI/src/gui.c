@@ -201,7 +201,7 @@ int main(int agrc, char* argv[])
     window1 = GTK_WIDGET(gtk_builder_get_object(builder, "window1"));
     window2 = GTK_WIDGET(gtk_builder_get_object(builder, "window2"));
 
-    g_signal_connect(window1, "destroy", G_CALLBACK(gtk_main_quit), NULL);      //
+    g_signal_connect(window1, "destroy", G_CALLBACK(gtk_main_quit), NULL);
     g_signal_connect(window2, "destroy", G_CALLBACK(gtk_main_quit), NULL);
 
     gtk_builder_connect_signals(builder, NULL);
