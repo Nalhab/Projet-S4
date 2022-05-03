@@ -216,6 +216,6 @@ void on_start(__attribute__((unused)) GtkButton *button, gpointer user_data)
         g_source_remove(game->disc.event);
 
         // Resets the event ID to zero.
-        game->disc.event = 0;
+        //game->disc.event = 0;
     }
 }

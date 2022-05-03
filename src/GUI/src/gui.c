@@ -64,6 +64,19 @@ GtkWidget* road10;
 GtkWidget* road11;
 GtkWidget* road12;
 
+GtkWidget* buttonIcon1;
+GtkWidget* buttonIcon2;
+GtkWidget* buttonIcon3;
+GtkWidget* buttonIcon4;
+GtkWidget* buttonIcon5;
+GtkWidget* buttonIcon6;
+GtkWidget* buttonIcon7;
+GtkWidget* buttonIcon8;
+GtkWidget* buttonIcon9;
+GtkWidget* buttonIcon10;
+GtkWidget* buttonIcon11;
+GtkWidget* buttonIcon12;
+
 // VARIABLES FOR ALGORITHMS -----------------
 
 int nbOfHumans = 5;
@@ -75,6 +88,7 @@ parc* parcGUI;
 GtkWidget* icon[12];
 GtkWidget* label[12];
 GtkWidget* road[12];
+GtkWidget* buttonIcon[12];
 
 int nbSeconds = 0;
 guint threadID = 0;
@@ -117,6 +131,23 @@ void create_icon_array(GtkWidget* icon[12])
     icon[11] = icon12;
 }
 
+//create array of the buttons of icons
+void create_buttonIcon_array(GtkWidget* buttonIcon[12])
+{
+    buttonIcon[0] = buttonIcon1;
+    buttonIcon[1] = buttonIcon2;
+    buttonIcon[2] = buttonIcon3;
+    buttonIcon[3] = buttonIcon4;
+    buttonIcon[4] = buttonIcon5;
+    buttonIcon[5] = buttonIcon6;
+    buttonIcon[6] = buttonIcon7;
+    buttonIcon[7] = buttonIcon8;
+    buttonIcon[8] = buttonIcon9;
+    buttonIcon[9] = buttonIcon10;
+    buttonIcon[10] = buttonIcon11;
+    buttonIcon[11] = buttonIcon12;
+}
+
 //create array of the labels
 void create_label_array(GtkWidget* label[12])
 {
@@ -154,9 +185,8 @@ Game game =
     {
         .disc =
             {
-                //.rect = { 391, 221, 9, 9 },
-                .rect = { 350, 390, 9, 9 },
-                .step = { 1, 1 },
+                .rect = { 390, 110, 9, 9 },
+                .step = { 1, -1 },
                 .event = 0,
                 .period = DISC_PERIOD,
             },
@@ -230,6 +260,19 @@ int main(int agrc, char* argv[])
     road10 = GTK_WIDGET(gtk_builder_get_object(builder, "road10"));
     road11 = GTK_WIDGET(gtk_builder_get_object(builder, "road11"));
     road12 = GTK_WIDGET(gtk_builder_get_object(builder, "road12"));
+
+    buttonIcon1 = GTK_WIDGET(gtk_builder_get_object(builder, "buttonIcon1"));
+    buttonIcon2 = GTK_WIDGET(gtk_builder_get_object(builder, "buttonIcon2"));
+    buttonIcon3 = GTK_WIDGET(gtk_builder_get_object(builder, "buttonIcon3"));
+    buttonIcon4 = GTK_WIDGET(gtk_builder_get_object(builder, "buttonIcon4"));
+    buttonIcon5 = GTK_WIDGET(gtk_builder_get_object(builder, "buttonIcon5"));
+    buttonIcon6 = GTK_WIDGET(gtk_builder_get_object(builder, "buttonIcon6"));
+    buttonIcon7 = GTK_WIDGET(gtk_builder_get_object(builder, "buttonIcon7"));
+    buttonIcon8 = GTK_WIDGET(gtk_builder_get_object(builder, "buttonIcon8"));
+    buttonIcon9 = GTK_WIDGET(gtk_builder_get_object(builder, "buttonIcon9"));
+    buttonIcon10 = GTK_WIDGET(gtk_builder_get_object(builder, "buttonIcon10"));
+    buttonIcon11 = GTK_WIDGET(gtk_builder_get_object(builder, "buttonIcon11"));
+    buttonIcon12 = GTK_WIDGET(gtk_builder_get_object(builder, "buttonIcon12"));
 
     button1bis = GTK_WIDGET(gtk_builder_get_object(builder, "button1bis"));
 
@@ -319,12 +362,17 @@ void on_button1_clicked(__attribute__((unused)) GtkButton *button)
     create_icon_array(icon);
     create_label_array(label);
     create_road_array(road);
+    create_buttonIcon_array(buttonIcon);
+
+    for (int i = 11; i >= 0; i -= 1)
+        gtk_widget_set_opacity(buttonIcon[i], 0);
 
     for (int i = 11; i >  1; i -= 1)
     {
         gtk_widget_show(icon[i]);
         gtk_widget_show(label[i]);
         gtk_widget_show(road[i]);
+        gtk_widget_show(buttonIcon[i]);
     }
 
     for (int i = 11; i > nbOfAttractions - 1; i -= 1)
@@ -332,6 +380,7 @@ void on_button1_clicked(__attribute__((unused)) GtkButton *button)
         gtk_widget_hide(icon[i]);
         gtk_widget_hide(label[i]);
         gtk_widget_hide(road[i]);
+        gtk_widget_hide(buttonIcon[i]);
     }
 
     //START TIMER
@@ -349,7 +398,7 @@ void on_button1_clicked(__attribute__((unused)) GtkButton *button)
     parcGUI = init_parc(nbOfAttractions);
     pop_init(nbOfHumans, parcGUI);
     timeoutLabel();
-    humanID = g_timeout_add(500, timeoutLabel, NULL);
+    humanID = g_timeout_add(200, timeoutLabel, NULL);
     iaID = g_timeout_add(2000, loop2, NULL);
 
     // TEST :
@@ -390,8 +439,68 @@ void on_button1bis_clicked()
     g_source_remove(threadID);
     g_source_remove(humanID);
     g_source_remove(iaID);
-    game.disc.rect.x = 391;
-    game.disc.rect.y = 221;
+    game.disc.rect.x = 390;
+    game.disc.rect.y = 110;
+}
+
+void on_buttonIcon1_clicked()
+{
+
+}
+
+void on_buttonIcon2_clicked()
+{
+
+}
+
+void on_buttonIcon3_clicked()
+{
+
+}
+
+void on_buttonIcon4_clicked()
+{
+    
+}
+
+void on_buttonIcon5_clicked()
+{
+    
+}
+
+void on_buttonIcon6_clicked()
+{
+    
+}
+
+void on_buttonIcon7_clicked()
+{
+    
+}
+
+void on_buttonIcon8_clicked()
+{
+    
+}
+
+void on_buttonIcon9_clicked()
+{
+    
+}
+
+void on_buttonIcon10_clicked()
+{
+    
+}
+
+void on_buttonIcon11_clicked()
+{
+    
+}
+
+void on_buttonIcon12_clicked()
+{
+    
 }
 
 //WHEN SOMEONE GOES IN AN ATTRACTION
