@@ -441,9 +441,12 @@ void on_button1bis_clicked()
 {
     gtk_widget_show(window1);
     gtk_widget_hide(window2);
-    g_source_remove(threadID);
-    g_source_remove(humanID);
-    g_source_remove(iaID);
+    if (threadID == 0)
+        g_source_remove(threadID);
+    if (humanID == 0)
+        g_source_remove(humanID);
+    if (iaID == 0)
+        g_source_remove(iaID);
     game.disc.rect.x = 390;
     game.disc.rect.y = 110;
 
