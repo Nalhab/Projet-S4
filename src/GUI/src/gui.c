@@ -364,6 +364,9 @@ void on_button1_clicked(__attribute__((unused)) GtkButton *button)
 {
     // Start the simulation
 
+    nbOfAttractions = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(spin1));
+    nbOfHumans = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(spin2));
+
     create_icon_array(icon);
     create_label_array(label);
     create_road_array(road);
@@ -441,18 +444,21 @@ void on_button1bis_clicked()
 {
     gtk_widget_show(window1);
     gtk_widget_hide(window2);
-    if (threadID == 0)
+
+    if (nbOfHumans != 0)
+    {
         g_source_remove(threadID);
-    if (humanID == 0)
         g_source_remove(humanID);
-    if (iaID == 0)
         g_source_remove(iaID);
+    }
+
     game.disc.rect.x = 390;
     game.disc.rect.y = 110;
 
     //TEMP
     if (game.disc.event != 0)
         g_source_remove(game.disc.event);
+
     game.disc.event = 0;
     game.disc.step.x = 1;
     game.disc.step.y = -1;
