@@ -448,7 +448,8 @@ void on_button1bis_clicked()
     game.disc.rect.y = 110;
 
     //TEMP
-    g_source_remove(game.disc.event);
+    if (game.disc.event != 0)
+        g_source_remove(game.disc.event);
     game.disc.event = 0;
     game.disc.step.x = 1;
     game.disc.step.y = -1;
