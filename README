@@ -92,3 +92,28 @@
            	Second part you can see the result of the Floyd algorithm.
            	It is a matrice where there are distances of each vertices from one of them.
            	For example the first line is the distance of each vertices from the first one.
+    ## IA :
+	
+	# Compilation :
+		Go to the IA directory :
+             	src/IA/
+           	Then to compile the program and generate the executable file :
+           		make
+		
+	# Execution :
+		Once the program has been compiled, you can run the population program:
+		./population
+	
+	# Cleaning :
+		You can clean all created files by typing :
+			make clean
+	
+	# Description :
+		The program print every 2 seconds an overview of the park
+		You cans see each attractions and the amount of people in the parc
+		Along with others parameters for each attractions.
+		The only number that change between 2 prints is the numbers of people.
+		So you can see people going from an attraction to another.
+		
+		
+	
