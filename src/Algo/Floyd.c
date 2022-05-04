@@ -49,30 +49,47 @@ int main() {
         struct Edge edges[] =
             {
                     {0, 1, 1}, {1, 2, 2}, {2, 3, 3}, {3, 4, 4}, {4, 0, 5}
+		    //, {0, 3, 1},{3, 0, -2}
             };
-	int n = sizeof(edges)/sizeof(edges[0]);
+	int n = 5;
+	int l = sizeof(edges)/sizeof(edges[0]);
     	struct list* List = malloc(sizeof(struct list));
         List->data = edges[0];
-	for(int i = 1; i < n; i++)
+	for(int i = 1; i < l; i++)
         {
                 struct list* nList = malloc(sizeof(struct list));
                 nList->data = edges[i];
                 list_push_front(List, nList);
+		//printf("%d, %d\n" ,edges[i].src,edges[i].dest); //Visualisation de 
+		//l'ajout des liaisons dans la liste
         } 
-        
-	struct Graph *graph = createGraph(n, List);
-	printf("Edges of the Graph :\n\n");
-	printGraph(graph);
-	//set all 0 to Inf
-	for(int i = 0; i < len; i++)
+        //printf("\n");
+	struct Graph *graph = createGraph(n, List, l);
+	
+	//Liste d'adjacense du Graph
+	/*for(int i = 0; i < n; i++)
 	{
-		for(int j = 0; j < len; j++)
+		for(int j = 0; j < n; j++)
+		{
+			printf("%d ", graph->adjLists[i][j]);
+		}
+		printf("\n");
+	}
+	printf("\n");*/
+
+	printf("Edges of the Graph :\n\n");
+	printGraph(graph, n);
+	//set all 0 to Inf
+	for(int i = 0; i < n; i++)
+	{
+		for(int j = 0; j < n; j++)
 		{
 			if(graph->adjLists[i][j] == 0 && i != j)
 				graph->adjLists[i][j] = INF;
 		}
 	}
 	printf("\n");
+
 	printf("Result of the Floyd algorithm :\n\n");
 	//call Floyd function
 	floydWarshall(graph->adjLists, n);

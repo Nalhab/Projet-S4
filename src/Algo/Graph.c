@@ -1,7 +1,7 @@
 #include "Graph.h"
 #define INF 999
 
-struct Graph* createGraph(int n, struct list* List)
+struct Graph* createGraph(int n, struct list* List, int nbEdges)
 {
     	struct Graph* graph = (struct Graph*)malloc(sizeof(struct Graph));
 	graph->adjLists = calloc(n,sizeof(int*));
@@ -12,13 +12,13 @@ struct Graph* createGraph(int n, struct list* List)
 	graph->head = calloc(n, sizeof(struct Node));
     	
 	// initialize head pointer for all vertices
-	for (int i = 0; i < N; i++) 
+	for (int i = 0; i < n; i++) 
 	{
 		graph->head[i] = NULL;
    	}
 	
 	// add edges to the directed graph one by one
-    	for (int i = 0; i < n; i++)
+    	for (int i = 0; i < nbEdges; i++)
     	{
 		int src = List->data.src;
 		int dest = List->data.dest;
@@ -36,9 +36,9 @@ struct Graph* createGraph(int n, struct list* List)
 	return graph;
 }
 
-void printGraph(struct Graph* graph)
+void printGraph(struct Graph* graph, int n)
 {
-    for (int i = 0; i < N; i++)
+    for (int i = 0; i < n; i++)
     {
         struct Node* ptr = graph->head[i];
         while (ptr != NULL)

@@ -28,9 +28,9 @@ struct Node
 };*/
 
 // Function to create an adjacency list from specified edges
-struct Graph* createGraph(int n, struct list* List);
+struct Graph* createGraph(int n, struct list* List, int nbEdges);
 
 // Function to print adjacency list representation of a graph
-void printGraph(struct Graph* graph);
+void printGraph(struct Graph* graph, int n);
 
 
