@@ -34,7 +34,7 @@ GtkWidget* icon8;
 GtkWidget* icon9;
 GtkWidget* icon10;
 GtkWidget* icon11;
-GtkWidget* icon12;
+//GtkWidget* icon12;
 
 GtkWidget* label1bis;
 GtkWidget* label2bis;
@@ -47,7 +47,7 @@ GtkWidget* label8bis;
 GtkWidget* label9bis;
 GtkWidget* label10bis;
 GtkWidget* label11bis;
-GtkWidget* label12bis;
+//GtkWidget* label12bis;
 GtkWidget* labelTimer;
 GtkWidget* labelHumans;
 
@@ -130,7 +130,7 @@ void create_icon_array(GtkWidget* icon[12])
     icon[8] = icon9;
     icon[9] = icon10;
     icon[10] = icon11;
-    icon[11] = icon12;
+    //icon[11] = icon12;
 }
 
 //create array of the buttons of icons
@@ -164,7 +164,7 @@ void create_label_array(GtkWidget* label[12])
     label[8] = label9bis;
     label[9] = label10bis;
     label[10] = label11bis;
-    label[11] = label12bis;
+    //label[11] = label12bis;
 }
 
 void create_road_array(GtkWidget* road[12])
@@ -187,10 +187,11 @@ Game game =
     {
         .disc =
             {
-                .rect = { 390, 110, 9, 9 },
+                .rect = { 310, 110, 9, 9 },
                 .step = { 1, -1 },
                 .event = 0,
                 .period = DISC_PERIOD,
+                .posAttraction = 0,
             },
     };
 
@@ -233,7 +234,7 @@ int main(int agrc, char* argv[])
     icon9 = GTK_WIDGET(gtk_builder_get_object(builder, "icon9"));
     icon10 = GTK_WIDGET(gtk_builder_get_object(builder, "icon10"));
     icon11 = GTK_WIDGET(gtk_builder_get_object(builder, "icon11"));
-    icon12 = GTK_WIDGET(gtk_builder_get_object(builder, "icon12"));
+    //icon12 = GTK_WIDGET(gtk_builder_get_object(builder, "icon12"));
 
     label1bis = GTK_WIDGET(gtk_builder_get_object(builder, "label1bis"));
     label2bis = GTK_WIDGET(gtk_builder_get_object(builder, "label2bis"));
@@ -246,7 +247,7 @@ int main(int agrc, char* argv[])
     label9bis = GTK_WIDGET(gtk_builder_get_object(builder, "label9bis"));
     label10bis = GTK_WIDGET(gtk_builder_get_object(builder, "label10bis"));
     label11bis = GTK_WIDGET(gtk_builder_get_object(builder, "label11bis"));
-    label12bis = GTK_WIDGET(gtk_builder_get_object(builder, "label12bis"));
+    //label12bis = GTK_WIDGET(gtk_builder_get_object(builder, "label12bis"));
     labelTimer = GTK_WIDGET(gtk_builder_get_object(builder, "labelTimer"));
     labelHumans = GTK_WIDGET(gtk_builder_get_object(builder, "labelHumans"));
 
@@ -375,18 +376,30 @@ void on_button1_clicked(__attribute__((unused)) GtkButton *button)
     for (int i = 11; i >= 0; i -= 1)
         gtk_widget_set_opacity(buttonIcon[i], 0);
 
-    for (int i = 11; i >  1; i -= 1)
+    for (int i = 11; i > 1; i -= 1)
     {
-        gtk_widget_show(icon[i]);
-        gtk_widget_show(label[i]);
+        //gtk_widget_show(icon[i]);
+        //gtk_widget_show(label[i]);
         gtk_widget_show(road[i]);
         gtk_widget_show(buttonIcon[i]);
     }
 
-    for (int i = 11; i > nbOfAttractions - 1; i -= 1)
+    for (int i = 10; i > 1; i -= 1)
+    {
+        gtk_widget_show(icon[i]);
+        gtk_widget_show(label[i]);
+    }
+
+    for (int i = 10; i > nbOfAttractions - 1; i -= 1)
     {
         gtk_widget_hide(icon[i]);
         gtk_widget_hide(label[i]);
+    }
+
+    for (int i = 11; i > nbOfAttractions; i -= 1)
+    {
+        //gtk_widget_hide(icon[i]);
+        //gtk_widget_hide(label[i]);
         gtk_widget_hide(road[i]);
         gtk_widget_hide(buttonIcon[i]);
     }
@@ -452,7 +465,7 @@ void on_button1bis_clicked()
         g_source_remove(iaID);
     }
 
-    game.disc.rect.x = 390;
+    game.disc.rect.x = 310;
     game.disc.rect.y = 110;
 
     //TEMP

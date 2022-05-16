@@ -4,7 +4,7 @@
   <requires lib="gtk+" version="3.20"/>
   <object class="GtkAdjustment" id="adjustment1">
     <property name="lower">2</property>
-    <property name="upper">12</property>
+    <property name="upper">11</property>
     <property name="value">2</property>
     <property name="step_increment">1</property>
     <property name="page_increment">10</property>
@@ -161,13 +161,12 @@
             <property name="pixbuf">icons/icon1_resize.png</property>
           </object>
           <packing>
-            <property name="x">295</property>
+            <property name="x">455</property>
             <property name="y">30</property>
           </packing>
         </child>
         <child>
-          <object class="GtkImage" id="icon2">
-            <property name="visible">True</property>
+          <object class="GtkImage" id="iconSuppr">
             <property name="can_focus">False</property>
             <property name="pixbuf">icons/icon2_resize.png</property>
           </object>
@@ -177,7 +176,7 @@
           </packing>
         </child>
         <child>
-          <object class="GtkImage" id="icon3">
+          <object class="GtkImage" id="icon2">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="pixbuf">icons/icon3_resize.png</property>
@@ -188,7 +187,7 @@
           </packing>
         </child>
         <child>
-          <object class="GtkImage" id="icon4">
+          <object class="GtkImage" id="icon3">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="pixbuf">icons/icon4_resize.png</property>
@@ -199,7 +198,7 @@
           </packing>
         </child>
         <child>
-          <object class="GtkImage" id="icon5">
+          <object class="GtkImage" id="icon4">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="tooltip_text" translatable="yes">Hello</property>
@@ -211,7 +210,7 @@
           </packing>
         </child>
         <child>
-          <object class="GtkImage" id="icon6">
+          <object class="GtkImage" id="icon5">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="pixbuf">icons/icon6_resize.png</property>
@@ -222,7 +221,7 @@
           </packing>
         </child>
         <child>
-          <object class="GtkImage" id="icon7">
+          <object class="GtkImage" id="icon6">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="pixbuf">icons/icon7_resize.png</property>
@@ -233,7 +232,7 @@
           </packing>
         </child>
         <child>
-          <object class="GtkImage" id="icon8">
+          <object class="GtkImage" id="icon7">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="pixbuf">icons/icon8_resize.png</property>
@@ -244,7 +243,7 @@
           </packing>
         </child>
         <child>
-          <object class="GtkImage" id="icon9">
+          <object class="GtkImage" id="icon8">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="pixbuf">icons/icon9_resize.png</property>
@@ -255,7 +254,7 @@
           </packing>
         </child>
         <child>
-          <object class="GtkImage" id="icon10">
+          <object class="GtkImage" id="icon9">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="pixbuf">icons/icon10_resize.png</property>
@@ -266,7 +265,7 @@
           </packing>
         </child>
         <child>
-          <object class="GtkImage" id="icon11">
+          <object class="GtkImage" id="icon10">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="pixbuf">icons/icon11_resize.png</property>
@@ -277,7 +276,7 @@
           </packing>
         </child>
         <child>
-          <object class="GtkImage" id="icon12">
+          <object class="GtkImage" id="icon11">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="pixbuf">icons/icon12_resize.png</property>
@@ -288,13 +287,23 @@
           </packing>
         </child>
         <child>
+          <object class="GtkLabel" id="labelSuppr">
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">0</property>
+          </object>
+          <packing>
+            <property name="x">265</property>
+            <property name="y">40</property>
+          </packing>
+        </child>
+        <child>
           <object class="GtkLabel" id="label1bis">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="label" translatable="yes">0</property>
           </object>
           <packing>
-            <property name="x">265</property>
+            <property name="x">518</property>
             <property name="y">40</property>
           </packing>
         </child>
@@ -305,8 +314,8 @@
             <property name="label" translatable="yes">0</property>
           </object>
           <packing>
-            <property name="x">518</property>
-            <property name="y">40</property>
+            <property name="x">641</property>
+            <property name="y">115</property>
           </packing>
         </child>
         <child>
@@ -316,8 +325,8 @@
             <property name="label" translatable="yes">0</property>
           </object>
           <packing>
-            <property name="x">641</property>
-            <property name="y">115</property>
+            <property name="x">718</property>
+            <property name="y">192</property>
           </packing>
         </child>
         <child>
@@ -328,22 +337,11 @@
           </object>
           <packing>
             <property name="x">718</property>
-            <property name="y">192</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkLabel" id="label5bis">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="label" translatable="yes">0</property>
-          </object>
-          <packing>
-            <property name="x">718</property>
             <property name="y">290</property>
           </packing>
         </child>
         <child>
-          <object class="GtkLabel" id="label6bis">
+          <object class="GtkLabel" id="label5bis">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="label" translatable="yes">0</property>
@@ -354,7 +352,7 @@
           </packing>
         </child>
         <child>
-          <object class="GtkLabel" id="label7bis">
+          <object class="GtkLabel" id="label6bis">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="label" translatable="yes">0</property>
@@ -365,7 +363,7 @@
           </packing>
         </child>
         <child>
-          <object class="GtkLabel" id="label8bis">
+          <object class="GtkLabel" id="label7bis">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="label" translatable="yes">0</property>
@@ -376,7 +374,7 @@
           </packing>
         </child>
         <child>
-          <object class="GtkLabel" id="label9bis">
+          <object class="GtkLabel" id="label8bis">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="label" translatable="yes">0</property>
@@ -387,7 +385,7 @@
           </packing>
         </child>
         <child>
-          <object class="GtkLabel" id="label10bis">
+          <object class="GtkLabel" id="label9bis">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="label" translatable="yes">0</property>
@@ -398,7 +396,7 @@
           </packing>
         </child>
         <child>
-          <object class="GtkLabel" id="label11bis">
+          <object class="GtkLabel" id="label10bis">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="label" translatable="yes">0</property>
@@ -409,7 +407,7 @@
           </packing>
         </child>
         <child>
-          <object class="GtkLabel" id="label12bis">
+          <object class="GtkLabel" id="label11bis">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="label" translatable="yes">0</property>
@@ -426,8 +424,8 @@
             <property name="pixbuf">icons/icon0_resize.png</property>
           </object>
           <packing>
-            <property name="x">372</property>
-            <property name="y">225</property>
+            <property name="x">292</property>
+            <property name="y">26</property>
           </packing>
         </child>
         <child>
@@ -445,7 +443,7 @@
           <object class="GtkImage" id="road">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="pixbuf">icons/road_resize.png</property>
+            <property name="pixbuf">icons/road_resize1.png</property>
           </object>
           <packing>
             <property name="x">193</property>

@@ -36,6 +36,21 @@
 //------------------
 // PARC 12 : x = 238
 //           y = 163
+//------------------
+// MID :     x = 389
+//           y = 250
+//------------------
+// MID N :   x = 389
+//           y = 110
+//------------------
+// MID W :   x = 193
+//           y = 250
+//------------------
+// MID E :   x = 584
+//           y = 250
+//------------------
+// MID S :   x = 389
+//           y = 390
 
 // Signal handler for the "draw" signal of the drawing area.
 gboolean on_draw(__attribute__((unused)) GtkWidget *widget, cairo_t *cr, 
@@ -102,9 +117,44 @@ gboolean on_move_disc(gpointer user_data)
     if (game->disc.rect.x == 193 && game->disc.rect.y == 208)
         if (game->disc.step.y == -1)
             game->disc.step.x *= -1;
-    
+
     //TESTS//TESTS//TESTS//TESTS//TESTS//TESTS//TESTS//TESTS//TESTS//TESTS
-    /*if (game->disc.rect.x == 310 && game->disc.rect.y == 110)
+    /*if (game->disc.rect.x == 389 && game->disc.rect.y == 250)
+    {
+        g_source_remove(game->disc.event);
+        game->disc.event = 0;
+        sleep(1);
+        game->disc.event = g_timeout_add(game->disc.period, on_move_disc, game);
+    }
+    if (game->disc.rect.x == 389 && game->disc.rect.y == 110)
+    {
+        g_source_remove(game->disc.event);
+        game->disc.event = 0;
+        sleep(1);
+        game->disc.event = g_timeout_add(game->disc.period, on_move_disc, game);
+    }
+    if (game->disc.rect.x == 584 && game->disc.rect.y == 250)
+    {
+        g_source_remove(game->disc.event);
+        game->disc.event = 0;
+        sleep(1);
+        game->disc.event = g_timeout_add(game->disc.period, on_move_disc, game);
+    }
+    if (game->disc.rect.x == 193 && game->disc.rect.y == 250)
+    {
+        g_source_remove(game->disc.event);
+        game->disc.event = 0;
+        sleep(1);
+        game->disc.event = g_timeout_add(game->disc.period, on_move_disc, game);
+    }
+    if (game->disc.rect.x == 389 && game->disc.rect.y == 390)
+    {
+        g_source_remove(game->disc.event);
+        game->disc.event = 0;
+        sleep(1);
+        game->disc.event = g_timeout_add(game->disc.period, on_move_disc, game);
+    }
+    if (game->disc.rect.x == 310 && game->disc.rect.y == 110)
     {
         g_source_remove(game->disc.event);
         game->disc.event = 0;
