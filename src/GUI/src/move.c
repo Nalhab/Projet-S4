@@ -4,13 +4,13 @@
 // PARC 1 :  x = 310
 //           y = 110
 //------------------
-// PARC 2 :  x = 470
+// PARC 2 :  x = 469
 //           y = 110
 //------------------
-// PARC 3 :  x = 537
+// PARC 3 :  x = 536
 //           y = 161
 //------------------
-// PARC 4 :  x = 581
+// PARC 4 :  x = 580
 //           y = 205
 //------------------
 // PARC 5 :  x = 580
@@ -25,10 +25,10 @@
 // PARC 8 :  x = 310
 //           y = 390
 //------------------
-// PARC 9 :  x = 241
+// PARC 9 :  x = 240
 //           y = 339
 //------------------
-// PARC 10 : x = 197
+// PARC 10 : x = 196
 //           y = 295
 //------------------
 // PARC 11 : x = 197
@@ -111,134 +111,200 @@ gboolean on_move_disc(gpointer user_data)
     if (game->disc.rect.x == 291 && game->disc.rect.y == 390)
         if (game->disc.step.x == -1)
             game->disc.step.y *= -1;
-    if (game->disc.rect.x == 193 && game->disc.rect.y == 291)
+    if (game->disc.rect.x == 193 && game->disc.rect.y == 292)
         if (game->disc.step.y == 1)
             game->disc.step.x *= -1;
     if (game->disc.rect.x == 193 && game->disc.rect.y == 208)
         if (game->disc.step.y == -1)
             game->disc.step.x *= -1;
 
-    //TESTS//TESTS//TESTS//TESTS//TESTS//TESTS//TESTS//TESTS//TESTS//TESTS
-    /*if (game->disc.rect.x == 389 && game->disc.rect.y == 250)
+
+    if (game->disc.attractionIn == 0)
     {
-        g_source_remove(game->disc.event);
-        game->disc.event = 0;
-        sleep(1);
-        game->disc.event = g_timeout_add(game->disc.period, on_move_disc, game);
+        if (game->disc.attractionGo >= 4 && game->disc.attractionGo <= 7)
+        {
+            if (game->disc.rect.x == 389 &&  game->disc.rect.y == 110)
+            {
+                game->disc.step.x = 0;
+                game->disc.step.y = 1;
+                g_source_remove(game->disc.event);
+                game->disc.event = 0;
+                game->disc.event = g_timeout_add(15, on_move_disc, game);
+            }
+            else if (game->disc.rect.x == 389 &&  game->disc.rect.y == 390)
+            {
+                if (game->disc.attractionGo == 7)
+                    game->disc.step.x = -1;
+                else
+                    game->disc.step.x = 1;
+
+                g_source_remove(game->disc.event);
+                game->disc.event = 0;
+                game->disc.event = g_timeout_add(game->disc.period, on_move_disc, game);
+            }
+            else if (game->disc.attractionGo == 4)
+            {
+                if (game->disc.rect.x == 389 && game->disc.rect.y == 250)
+                {
+                    game->disc.step.x = 1;
+                    game->disc.step.y = 0;
+                }
+                else if (game->disc.rect.x == 584 && game->disc.rect.y == 250)
+                {
+                    game->disc.step.y = 1;
+                    g_source_remove(game->disc.event);
+                    game->disc.event = 0;
+                    game->disc.event = g_timeout_add(game->disc.period, on_move_disc, game);
+                }
+            }
+        }
+        else
+            if (game->disc.posOrNeg == FALSE)
+                if (game->disc.attractionGo > 3)
+                {
+                    game->disc.step.x *= -1;
+                    game->disc.posOrNeg = TRUE;
+                }
     }
-    if (game->disc.rect.x == 389 && game->disc.rect.y == 110)
+    else if (game->disc.attractionIn == 1)
     {
-        g_source_remove(game->disc.event);
-        game->disc.event = 0;
-        sleep(1);
-        game->disc.event = g_timeout_add(game->disc.period, on_move_disc, game);
+        if (game->disc.attractionGo >= 6 && game->disc.attractionGo <= 9)
+        {
+            if (game->disc.rect.x == 389 &&  game->disc.rect.y == 110)
+            {
+                game->disc.step.x = 0;
+                game->disc.step.y = 1;
+                g_source_remove(game->disc.event);
+                game->disc.event = 0;
+                game->disc.event = g_timeout_add(15, on_move_disc, game);
+            }
+            else if (game->disc.rect.x == 389 &&  game->disc.rect.y == 390)
+            {
+                if (game->disc.attractionGo == 6)
+                    game->disc.step.x = 1;
+                else
+                    game->disc.step.x = -1;
+
+                g_source_remove(game->disc.event);
+                game->disc.event = 0;
+                game->disc.event = g_timeout_add(game->disc.period, on_move_disc, game);
+            }
+            else if (game->disc.attractionGo == 9)
+            {
+                if (game->disc.rect.x == 389 && game->disc.rect.y == 250)
+                {
+                    game->disc.step.x = -1;
+                    game->disc.step.y = 0;
+                }
+                else if (game->disc.rect.x == 193 && game->disc.rect.y == 250)
+                {
+                    game->disc.step.y = 1;
+                    g_source_remove(game->disc.event);
+                    game->disc.event = 0;
+                    game->disc.event = g_timeout_add(game->disc.period, on_move_disc, game);
+                }
+            }
+        }
+        else
+            if (game->disc.posOrNeg == FALSE)
+                if (game->disc.attractionGo > 5 && game->disc.attractionGo < 1)
+                {
+                    game->disc.step.x *= -1;
+                    game->disc.posOrNeg = TRUE;
+                }
     }
-    if (game->disc.rect.x == 584 && game->disc.rect.y == 250)
+    else if (game->disc.attractionIn == 2)
     {
-        g_source_remove(game->disc.event);
-        game->disc.event = 0;
-        sleep(1);
-        game->disc.event = g_timeout_add(game->disc.period, on_move_disc, game);
+        if (game->disc.attractionGo >= 7 && game->disc.attractionGo <= 10)
+        {
+            if (game->disc.rect.x == 389 &&  game->disc.rect.y == 110)
+            {
+                game->disc.step.x = 0;
+                game->disc.step.y = 1;
+                g_source_remove(game->disc.event);
+                game->disc.event = 0;
+                game->disc.event = g_timeout_add(15, on_move_disc, game);
+            }
+            else if (game->disc.rect.x == 389 &&  game->disc.rect.y == 390)
+            {
+                game->disc.step.x = -1;
+                g_source_remove(game->disc.event);
+                game->disc.event = 0;
+                game->disc.event = g_timeout_add(game->disc.period, on_move_disc, game);
+            }
+            else if (game->disc.attractionGo >= 9)
+            {
+                if (game->disc.rect.x == 389 && game->disc.rect.y == 250)
+                {
+                    game->disc.step.x = -1;
+                    game->disc.step.y = 0;
+                }
+                else if (game->disc.rect.x == 193 && game->disc.rect.y == 250)
+                {
+                    if (game->disc.attractionGo == 10)
+                        game->disc.step.y = -1;
+                    else
+                        game->disc.step.y = 1;
+
+                    g_source_remove(game->disc.event);
+                    game->disc.event = 0;
+                    game->disc.event = g_timeout_add(game->disc.period, on_move_disc, game);
+                }
+            }
+        }
+        else
+            if (game->disc.posOrNeg == FALSE)
+                if (game->disc.attractionGo > 2 && game->disc.attractionGo < 7)
+                {
+                    game->disc.step.x *= -1;
+                    game->disc.posOrNeg = TRUE;
+                }
     }
-    if (game->disc.rect.x == 193 && game->disc.rect.y == 250)
+    else if (game->disc.attractionIn == 3)
     {
-        g_source_remove(game->disc.event);
-        game->disc.event = 0;
-        sleep(1);
-        game->disc.event = g_timeout_add(game->disc.period, on_move_disc, game);
+        
     }
-    if (game->disc.rect.x == 389 && game->disc.rect.y == 390)
+    else if (game->disc.attractionIn == 4)
     {
-        g_source_remove(game->disc.event);
-        game->disc.event = 0;
-        sleep(1);
-        game->disc.event = g_timeout_add(game->disc.period, on_move_disc, game);
+        
     }
-    if (game->disc.rect.x == 310 && game->disc.rect.y == 110)
+    else if (game->disc.attractionIn == 5)
     {
-        g_source_remove(game->disc.event);
-        game->disc.event = 0;
-        sleep(1);
-        game->disc.event = g_timeout_add(game->disc.period, on_move_disc, game);
+        
     }
-    if (game->disc.rect.x == 470 && game->disc.rect.y == 110)
+    else if (game->disc.attractionIn == 6)
     {
-        g_source_remove(game->disc.event);
-        game->disc.event = 0;
-        sleep(1);
-        game->disc.event = g_timeout_add(game->disc.period, on_move_disc, game);
+        
     }
-    if (game->disc.rect.x == 537 && game->disc.rect.y == 161)
+    else if (game->disc.attractionIn == 7)
     {
-        g_source_remove(game->disc.event);
-        game->disc.event = 0;
-        sleep(1);
-        game->disc.event = g_timeout_add(game->disc.period, on_move_disc, game);
+        
     }
-    if (game->disc.rect.x == 581 && game->disc.rect.y == 205)
+    else if (game->disc.attractionIn == 8)
     {
-        g_source_remove(game->disc.event);
-        game->disc.event = 0;
-        sleep(1);
-        game->disc.event = g_timeout_add(game->disc.period, on_move_disc, game);
+        
     }
-    if (game->disc.rect.x == 580 && game->disc.rect.y == 295)
+    else if (game->disc.attractionIn == 9)
     {
-        g_source_remove(game->disc.event);
-        game->disc.event = 0;
-        sleep(1);
-        game->disc.event = g_timeout_add(game->disc.period, on_move_disc, game);
+        
     }
-    if (game->disc.rect.x == 537 && game->disc.rect.y == 338)
+    else if (game->disc.attractionIn == 10)
     {
-        g_source_remove(game->disc.event);
-        game->disc.event = 0;
-        sleep(1);
-        game->disc.event = g_timeout_add(game->disc.period, on_move_disc, game);
+        
     }
-    if (game->disc.rect.x == 470 && game->disc.rect.y == 390)
+    else
     {
-        g_source_remove(game->disc.event);
-        game->disc.event = 0;
-        sleep(1);
-        game->disc.event = g_timeout_add(game->disc.period, on_move_disc, game);
+
     }
-    if (game->disc.rect.x == 310 && game->disc.rect.y == 390)
+
+    if (game->disc.rect.x == game->disc.posX && game->disc.rect.y == game->disc.posY)
     {
         g_source_remove(game->disc.event);
         game->disc.event = 0;
-        sleep(1);
-        game->disc.event = g_timeout_add(game->disc.period, on_move_disc, game);
+        //game->disc.event = g_timeout_add(game->disc.period, on_move_disc, game);
     }
-    if (game->disc.rect.x == 241 && game->disc.rect.y == 339)
-    {
-        g_source_remove(game->disc.event);
-        game->disc.event = 0;
-        sleep(1);
-        game->disc.event = g_timeout_add(game->disc.period, on_move_disc, game);
-    }
-    if (game->disc.rect.x == 197 && game->disc.rect.y == 295)
-    {
-        g_source_remove(game->disc.event);
-        game->disc.event = 0;
-        sleep(1);
-        game->disc.event = g_timeout_add(game->disc.period, on_move_disc, game);
-    }
-    if (game->disc.rect.x == 197 && game->disc.rect.y == 204)
-    {
-        g_source_remove(game->disc.event);
-        game->disc.event = 0;
-        sleep(1);
-        game->disc.event = g_timeout_add(game->disc.period, on_move_disc, game);
-    }
-    if (game->disc.rect.x == 238 && game->disc.rect.y == 163)
-    {
-        g_source_remove(game->disc.event);
-        game->disc.event = 0;
-        sleep(1);
-        game->disc.event = g_timeout_add(game->disc.period, on_move_disc, game);
-    }*/
-    //TESTS//TESTS//TESTS//TESTS//TESTS//TESTS//TESTS//TESTS//TESTS//TESTS
+
+    //printf("X : %i\nY : %i\n", game->disc.rect.x, game->disc.rect.y);
 
     // Works out the new position of the disc.
     game->disc.rect.x = CLAMP(game->disc.rect.x + game->disc.step.x, 193,

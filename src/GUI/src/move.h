@@ -18,7 +18,11 @@ typedef struct Disc
     GdkPoint step;                  // Horizontal and verical steps in pixels
     guint period;                   // Period in milliseconds
     guint event;                    // Event ID used to move the disc
-    int posAttraction;
+    int attractionIn;                 // n° of actual attraction
+    int attractionGo;
+    int posX;
+    int posY;
+    gboolean posOrNeg;
 } Disc;
 
 typedef struct UserInterface

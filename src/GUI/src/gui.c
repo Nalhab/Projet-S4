@@ -77,7 +77,7 @@ GtkWidget* buttonIcon10;
 GtkWidget* buttonIcon11;
 GtkWidget* buttonIcon12;
 
-GtkWidget* temp;
+GtkWidget* buttonPath;
 
 // VARIABLES FOR ALGORITHMS -----------------
 
@@ -91,6 +91,8 @@ GtkWidget* icon[12];
 GtkWidget* label[12];
 GtkWidget* road[12];
 GtkWidget* buttonIcon[12];
+
+int step[12] = { 1, -1, -1, 1, -1, 1, 1, -1, -1, 1, -1, -1 };
 
 int nbSeconds = 0;
 guint threadID = 0;
@@ -187,11 +189,15 @@ Game game =
     {
         .disc =
             {
-                .rect = { 310, 110, 9, 9 },
+                .rect = { 469, 110, 9, 9 }, //310 110
                 .step = { 1, -1 },
                 .event = 0,
                 .period = DISC_PERIOD,
-                .posAttraction = 0,
+                .attractionIn = 2, // 0
+                .attractionGo = 1, //-1
+                .posX = 310, //-1
+                .posY = 110, //-1
+                .posOrNeg = FALSE,
             },
     };
 
@@ -279,12 +285,10 @@ int main(int agrc, char* argv[])
 
     button1bis = GTK_WIDGET(gtk_builder_get_object(builder, "button1bis"));
 
-    temp = GTK_WIDGET(gtk_builder_get_object(builder, "temp"));
+    buttonPath = GTK_WIDGET(gtk_builder_get_object(builder, "buttonPath"));
 
     gtk_widget_show(window1);
 
-    //TEMPORARY//TEMPORARY//TEMPORARY//TEMPORARY
-    g_signal_connect(temp, "clicked", G_CALLBACK(on_start), &game);
     //TO START
     //g_signal_connect(button1, "clicked", G_CALLBACK(on_start), &game);
     //g_signal_connect(button1bis, "clicked", G_CALLBACK(on_start), &game);
@@ -535,6 +539,13 @@ void on_buttonIcon11_clicked()
 void on_buttonIcon12_clicked()
 {
     
+}
+
+void on_buttonPath_clicked(GtkButton* button)
+{
+    game.disc.posOrNeg = FALSE;
+    game.disc.step.x = step[game.disc.attractionIn];
+    on_start(button, &game);
 }
 
 //WHEN SOMEONE GOES IN AN ATTRACTION

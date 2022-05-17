@@ -145,7 +145,7 @@
   </object>
   <object class="GtkWindow" id="window2">
     <property name="can_focus">False</property>
-    <property name="default_width">800</property>
+    <property name="default_width">950</property>
     <property name="default_height">500</property>
     <child type="titlebar">
       <placeholder/>
@@ -166,20 +166,10 @@
           </packing>
         </child>
         <child>
-          <object class="GtkImage" id="iconSuppr">
-            <property name="can_focus">False</property>
-            <property name="pixbuf">icons/icon2_resize.png</property>
-          </object>
-          <packing>
-            <property name="x">455</property>
-            <property name="y">27</property>
-          </packing>
-        </child>
-        <child>
           <object class="GtkImage" id="icon2">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="pixbuf">icons/icon3_resize.png</property>
+            <property name="pixbuf">icons/icon2_resize.png</property>
           </object>
           <packing>
             <property name="x">580</property>
@@ -190,7 +180,7 @@
           <object class="GtkImage" id="icon3">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="pixbuf">icons/icon4_resize.png</property>
+            <property name="pixbuf">icons/icon3_resize.png</property>
           </object>
           <packing>
             <property name="x">655</property>
@@ -202,7 +192,7 @@
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="tooltip_text" translatable="yes">Hello</property>
-            <property name="pixbuf">icons/icon5_resize.png</property>
+            <property name="pixbuf">icons/icon4_resize.png</property>
           </object>
           <packing>
             <property name="x">655</property>
@@ -213,7 +203,7 @@
           <object class="GtkImage" id="icon5">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="pixbuf">icons/icon6_resize.png</property>
+            <property name="pixbuf">icons/icon5_resize.png</property>
           </object>
           <packing>
             <property name="x">580</property>
@@ -224,7 +214,7 @@
           <object class="GtkImage" id="icon6">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="pixbuf">icons/icon7_resize.png</property>
+            <property name="pixbuf">icons/icon6_resize.png</property>
           </object>
           <packing>
             <property name="x">455</property>
@@ -235,7 +225,7 @@
           <object class="GtkImage" id="icon7">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="pixbuf">icons/icon8_resize.png</property>
+            <property name="pixbuf">icons/icon7_resize.png</property>
           </object>
           <packing>
             <property name="x">295</property>
@@ -246,7 +236,7 @@
           <object class="GtkImage" id="icon8">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="pixbuf">icons/icon9_resize.png</property>
+            <property name="pixbuf">icons/icon8_resize.png</property>
           </object>
           <packing>
             <property name="x">170</property>
@@ -257,7 +247,7 @@
           <object class="GtkImage" id="icon9">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="pixbuf">icons/icon10_resize.png</property>
+            <property name="pixbuf">icons/icon9_resize.png</property>
           </object>
           <packing>
             <property name="x">98</property>
@@ -268,7 +258,7 @@
           <object class="GtkImage" id="icon10">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="pixbuf">icons/icon11_resize.png</property>
+            <property name="pixbuf">icons/icon10_resize.png</property>
           </object>
           <packing>
             <property name="x">100</property>
@@ -279,7 +269,7 @@
           <object class="GtkImage" id="icon11">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="pixbuf">icons/icon12_resize.png</property>
+            <property name="pixbuf">icons/icon11_resize.png</property>
           </object>
           <packing>
             <property name="x">180</property>
@@ -584,7 +574,6 @@
         </child>
         <child>
           <object class="GtkDrawingArea" id="GDA">
-            <property name="width_request">800</property>
             <property name="height_request">500</property>
             <property name="visible">True</property>
             <property name="can_focus">False</property>
@@ -599,7 +588,7 @@
             <signal name="clicked" handler="on_button1bis_clicked" swapped="no"/>
           </object>
           <packing>
-            <property name="x">660</property>
+            <property name="x">690</property>
             <property name="y">25</property>
           </packing>
         </child>
@@ -783,16 +772,292 @@
           </packing>
         </child>
         <child>
-          <object class="GtkButton" id="temp">
+          <object class="GtkButton" id="buttonPath">
             <property name="label" translatable="yes">
 </property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
+            <signal name="clicked" handler="on_buttonPath_clicked" swapped="no"/>
           </object>
           <packing>
             <property name="x">20</property>
             <property name="y">440</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkImage" id="iconSmall1">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="pixbuf">icons/icon1_small.png</property>
+          </object>
+          <packing>
+            <property name="x">890</property>
+            <property name="y">80</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkImage" id="iconSmall2">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="pixbuf">icons/icon2_small.png</property>
+          </object>
+          <packing>
+            <property name="x">890</property>
+            <property name="y">115</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkImage" id="iconSmall3">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="pixbuf">icons/icon3_small.png</property>
+          </object>
+          <packing>
+            <property name="x">891</property>
+            <property name="y">152</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkImage" id="iconSmall4">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="pixbuf">icons/icon4_small.png</property>
+          </object>
+          <packing>
+            <property name="x">891</property>
+            <property name="y">185</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkImage" id="iconSmall5">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="pixbuf">icons/icon5_small.png</property>
+          </object>
+          <packing>
+            <property name="x">890</property>
+            <property name="y">216</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkImage" id="iconSmall6">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="pixbuf">icons/icon6_small.png</property>
+          </object>
+          <packing>
+            <property name="x">890</property>
+            <property name="y">250</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkImage" id="iconSmall7">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="pixbuf">icons/icon7_small.png</property>
+          </object>
+          <packing>
+            <property name="x">889</property>
+            <property name="y">286</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkImage" id="iconSmall8">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="pixbuf">icons/icon8_small.png</property>
+          </object>
+          <packing>
+            <property name="x">889</property>
+            <property name="y">324</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkImage" id="iconSmall9">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="pixbuf">icons/icon9_small.png</property>
+          </object>
+          <packing>
+            <property name="x">890</property>
+            <property name="y">363</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkImage" id="iconSmall10">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="pixbuf">icons/icon10_small.png</property>
+          </object>
+          <packing>
+            <property name="x">891</property>
+            <property name="y">397</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkImage" id="iconSmall11">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="pixbuf">icons/icon11_small.png</property>
+          </object>
+          <packing>
+            <property name="x">890</property>
+            <property name="y">433</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="buttonValidate">
+            <property name="label" translatable="yes">Validate</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <signal name="clicked" handler="on_buttonValidate_clicked" swapped="no"/>
+          </object>
+          <packing>
+            <property name="x">835</property>
+            <property name="y">25</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkCheckButton" id="checkIcon1">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">False</property>
+            <property name="draw_indicator">True</property>
+            <signal name="toggled" handler="on_checkIcon1_toggled" swapped="no"/>
+          </object>
+          <packing>
+            <property name="x">840</property>
+            <property name="y">83</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkCheckButton" id="checkIcon2">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">False</property>
+            <property name="draw_indicator">True</property>
+            <signal name="toggled" handler="on_checkIcon2_toggled" swapped="no"/>
+          </object>
+          <packing>
+            <property name="x">840</property>
+            <property name="y">118</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkCheckButton" id="checkIcon3">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">False</property>
+            <property name="draw_indicator">True</property>
+            <signal name="toggled" handler="on_checkIcon3_toggled" swapped="no"/>
+          </object>
+          <packing>
+            <property name="x">840</property>
+            <property name="y">153</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkCheckButton" id="checkIcon4">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">False</property>
+            <property name="draw_indicator">True</property>
+          </object>
+          <packing>
+            <property name="x">840</property>
+            <property name="y">189</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkCheckButton" id="checkIcon5">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">False</property>
+            <property name="draw_indicator">True</property>
+            <signal name="toggled" handler="on_checkIcon5_toggled" swapped="no"/>
+          </object>
+          <packing>
+            <property name="x">840</property>
+            <property name="y">224</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkCheckButton" id="checkIcon6">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">False</property>
+            <property name="draw_indicator">True</property>
+            <signal name="toggled" handler="on_checkIcon6_toggled" swapped="no"/>
+          </object>
+          <packing>
+            <property name="x">840</property>
+            <property name="y">258</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkCheckButton" id="checkIcon7">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">False</property>
+            <property name="draw_indicator">True</property>
+            <signal name="toggled" handler="on_checkIcon7_toggled" swapped="no"/>
+          </object>
+          <packing>
+            <property name="x">840</property>
+            <property name="y">293</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkCheckButton" id="checkIcon8">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">False</property>
+            <property name="draw_indicator">True</property>
+            <signal name="toggled" handler="on_checkIcon8_toggled" swapped="no"/>
+          </object>
+          <packing>
+            <property name="x">840</property>
+            <property name="y">328</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkCheckButton" id="checkIcon9">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">False</property>
+            <property name="draw_indicator">True</property>
+            <signal name="toggled" handler="on_checkIcon9_toggled" swapped="no"/>
+          </object>
+          <packing>
+            <property name="x">840</property>
+            <property name="y">365</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkCheckButton" id="checkIcon10">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">False</property>
+            <property name="draw_indicator">True</property>
+            <signal name="toggled" handler="on_checkIcon10_toggled" swapped="no"/>
+          </object>
+          <packing>
+            <property name="x">840</property>
+            <property name="y">400</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkCheckButton" id="checkIcon11">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">False</property>
+            <property name="draw_indicator">True</property>
+          </object>
+          <packing>
+            <property name="x">840</property>
+            <property name="y">435</property>
           </packing>
         </child>
       </object>
