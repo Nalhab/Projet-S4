@@ -79,6 +79,30 @@ GtkWidget* buttonIcon12;
 
 GtkWidget* buttonPath;
 
+GtkWidget* checkIcon1;
+GtkWidget* checkIcon2;
+GtkWidget* checkIcon3;
+GtkWidget* checkIcon4;
+GtkWidget* checkIcon5;
+GtkWidget* checkIcon6;
+GtkWidget* checkIcon7;
+GtkWidget* checkIcon8;
+GtkWidget* checkIcon9;
+GtkWidget* checkIcon10;
+GtkWidget* checkIcon11;
+
+GtkWidget* iconSmall1;
+GtkWidget* iconSmall2;
+GtkWidget* iconSmall3;
+GtkWidget* iconSmall4;
+GtkWidget* iconSmall5;
+GtkWidget* iconSmall6;
+GtkWidget* iconSmall7;
+GtkWidget* iconSmall8;
+GtkWidget* iconSmall9;
+GtkWidget* iconSmall10;
+GtkWidget* iconSmall11;
+
 // VARIABLES FOR ALGORITHMS -----------------
 
 int nbOfHumans = 5;
@@ -88,11 +112,35 @@ int isRaining = 0; // 1 -> False    0 -> True
 parc* parcGUI;
 
 GtkWidget* icon[12];
-GtkWidget* label[12];
+GtkWidget* label[11];
 GtkWidget* road[12];
 GtkWidget* buttonIcon[12];
+GtkWidget* checkIcon[11];
+GtkWidget* iconSmall[11];
 
-int step[12] = { 1, -1, -1, 1, -1, 1, 1, -1, -1, 1, -1, -1 };
+typedef struct
+{
+    int number;
+    int posX;
+    int posY;
+}Attraction;
+
+Attraction attractions[12] = {{0, 310, 110},
+                              {1, 469, 110},
+                              {2, 536, 161},
+                              {3, 580, 205},
+                              {4, 580, 295},
+                              {5, 537, 338},
+                              {6, 470, 390},
+                              {7, 310, 390},
+                              {8, 240, 339},
+                              {9, 196, 295},
+                              {10, 197, 204},
+                              {11, 238, 163}};
+
+int attractionToggled[11] = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+
+int step[12] = { 1, -1, -1, 1, 1, -1, -1, 1, 1, -1, -1, 1 };
 
 int nbSeconds = 0;
 guint threadID = 0;
@@ -185,18 +233,48 @@ void create_road_array(GtkWidget* road[12])
     road[11] = road12;
 }
 
+void create_iconSmall_array(GtkWidget* iconSmall[11])
+{
+    iconSmall[0] = iconSmall1;
+    iconSmall[1] = iconSmall2;
+    iconSmall[2] = iconSmall3;
+    iconSmall[3] = iconSmall4;
+    iconSmall[4] = iconSmall5;
+    iconSmall[5] = iconSmall6;
+    iconSmall[6] = iconSmall7;
+    iconSmall[7] = iconSmall8;
+    iconSmall[8] = iconSmall9;
+    iconSmall[9] = iconSmall10;
+    iconSmall[10] = iconSmall11;
+}
+
+void create_check_array(GtkWidget* checkIcon[11])
+{
+    checkIcon[0] = checkIcon1;
+    checkIcon[1] = checkIcon2;
+    checkIcon[2] = checkIcon3;
+    checkIcon[3] = checkIcon4;
+    checkIcon[4] = checkIcon5;
+    checkIcon[5] = checkIcon6;
+    checkIcon[6] = checkIcon7;
+    checkIcon[7] = checkIcon8;
+    checkIcon[8] = checkIcon9;
+    checkIcon[9] = checkIcon10;
+    checkIcon[10] = checkIcon11;
+}
+
 Game game =
     {
         .disc =
             {
-                .rect = { 469, 110, 9, 9 }, //310 110
+                .rect = { 310, 110, 9, 9 }, //310 110
                 .step = { 1, -1 },
                 .event = 0,
                 .period = DISC_PERIOD,
-                .attractionIn = 2, // 0
-                .attractionGo = 1, //-1
-                .posX = 310, //-1
-                .posY = 110, //-1
+                .attractionIn = 0,
+                .attractionGo = 1,
+                .posX = 469,
+                .posY = 110,
                 .posOrNeg = FALSE,
             },
     };
@@ -287,6 +365,30 @@ int main(int agrc, char* argv[])
 
     buttonPath = GTK_WIDGET(gtk_builder_get_object(builder, "buttonPath"));
 
+    checkIcon1 = GTK_WIDGET(gtk_builder_get_object(builder, "checkIcon1"));
+    checkIcon2 = GTK_WIDGET(gtk_builder_get_object(builder, "checkIcon2"));
+    checkIcon3 = GTK_WIDGET(gtk_builder_get_object(builder, "checkIcon3"));
+    checkIcon4 = GTK_WIDGET(gtk_builder_get_object(builder, "checkIcon4"));
+    checkIcon5 = GTK_WIDGET(gtk_builder_get_object(builder, "checkIcon5"));
+    checkIcon6 = GTK_WIDGET(gtk_builder_get_object(builder, "checkIcon6"));
+    checkIcon7 = GTK_WIDGET(gtk_builder_get_object(builder, "checkIcon7"));
+    checkIcon8 = GTK_WIDGET(gtk_builder_get_object(builder, "checkIcon8"));
+    checkIcon9 = GTK_WIDGET(gtk_builder_get_object(builder, "checkIcon9"));
+    checkIcon10 = GTK_WIDGET(gtk_builder_get_object(builder, "checkIcon10"));
+    checkIcon11 = GTK_WIDGET(gtk_builder_get_object(builder, "checkIcon11"));
+
+    iconSmall1 = GTK_WIDGET(gtk_builder_get_object(builder, "iconSmall1"));
+    iconSmall2 = GTK_WIDGET(gtk_builder_get_object(builder, "iconSmall2"));
+    iconSmall3 = GTK_WIDGET(gtk_builder_get_object(builder, "iconSmall3"));
+    iconSmall4 = GTK_WIDGET(gtk_builder_get_object(builder, "iconSmall4"));
+    iconSmall5 = GTK_WIDGET(gtk_builder_get_object(builder, "iconSmall5"));
+    iconSmall6 = GTK_WIDGET(gtk_builder_get_object(builder, "iconSmall6"));
+    iconSmall7 = GTK_WIDGET(gtk_builder_get_object(builder, "iconSmall7"));
+    iconSmall8 = GTK_WIDGET(gtk_builder_get_object(builder, "iconSmall8"));
+    iconSmall9 = GTK_WIDGET(gtk_builder_get_object(builder, "iconSmall9"));
+    iconSmall10 = GTK_WIDGET(gtk_builder_get_object(builder, "iconSmall10"));
+    iconSmall11 = GTK_WIDGET(gtk_builder_get_object(builder, "iconSmall11"));
+
     gtk_widget_show(window1);
 
     //TO START
@@ -376,6 +478,8 @@ void on_button1_clicked(__attribute__((unused)) GtkButton *button)
     create_label_array(label);
     create_road_array(road);
     create_buttonIcon_array(buttonIcon);
+    create_iconSmall_array(iconSmall);
+    create_check_array(checkIcon);
 
     for (int i = 11; i >= 0; i -= 1)
         gtk_widget_set_opacity(buttonIcon[i], 0);
@@ -392,12 +496,16 @@ void on_button1_clicked(__attribute__((unused)) GtkButton *button)
     {
         gtk_widget_show(icon[i]);
         gtk_widget_show(label[i]);
+        gtk_widget_show(iconSmall[i]);
+        gtk_widget_show(checkIcon[i]);
     }
 
     for (int i = 10; i > nbOfAttractions - 1; i -= 1)
     {
         gtk_widget_hide(icon[i]);
         gtk_widget_hide(label[i]);
+        gtk_widget_hide(iconSmall[i]);
+        gtk_widget_hide(checkIcon[i]);
     }
 
     for (int i = 11; i > nbOfAttractions; i -= 1)
@@ -469,6 +577,10 @@ void on_button1bis_clicked()
         g_source_remove(iaID);
     }
 
+    for (int i = 0; i < nbOfAttractions; i += 1)
+        if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(checkIcon[i])))
+            gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(checkIcon[i]), FALSE);
+
     game.disc.rect.x = 310;
     game.disc.rect.y = 110;
 
@@ -479,6 +591,10 @@ void on_button1bis_clicked()
     game.disc.event = 0;
     game.disc.step.x = 1;
     game.disc.step.y = -1;
+    game.disc.attractionIn = 0;
+    game.disc.attractionGo = 1;
+    game.disc.posX = 469;
+    game.disc.posY = 110;
 }
 
 void on_buttonIcon1_clicked()
@@ -543,9 +659,115 @@ void on_buttonIcon12_clicked()
 
 void on_buttonPath_clicked(GtkButton* button)
 {
+    //game.disc.posOrNeg = FALSE;
+    //game.disc.step.x = step[game.disc.attractionIn];
+    on_start(button, &game);
+}
+
+void on_checkIcon1_toggled()
+{
+    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(checkIcon[0])))
+        attractionToggled[0] = 0;
+    else
+        attractionToggled[0] = 1;
+}
+
+void on_checkIcon2_toggled()
+{
+    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(checkIcon[1])))
+        attractionToggled[1] = 0;
+    else
+        attractionToggled[1] = 1;
+}
+
+void on_checkIcon3_toggled()
+{
+    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(checkIcon[2])))
+        attractionToggled[2] = 0;
+    else
+        attractionToggled[2] = 1;
+}
+
+void on_checkIcon4_toggled()
+{
+    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(checkIcon[3])))
+        attractionToggled[3] = 0;
+    else
+        attractionToggled[3] = 1;
+}
+
+void on_checkIcon5_toggled()
+{
+    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(checkIcon[4])))
+        attractionToggled[4] = 0;
+    else
+        attractionToggled[4] = 1;
+}
+
+void on_checkIcon6_toggled()
+{
+    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(checkIcon[5])))
+        attractionToggled[5] = 0;
+    else
+        attractionToggled[5] = 1;
+}
+
+void on_checkIcon7_toggled()
+{
+    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(checkIcon[6])))
+        attractionToggled[6] = 0;
+    else
+        attractionToggled[6] = 1;
+}
+
+void on_checkIcon8_toggled()
+{
+    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(checkIcon[7])))
+        attractionToggled[7] = 0;
+    else
+        attractionToggled[7] = 1;
+}
+
+void on_checkIcon9_toggled()
+{
+    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(checkIcon[8])))
+        attractionToggled[8] = 0;
+    else
+        attractionToggled[8] = 1;
+}
+
+void on_checkIcon10_toggled()
+{
+    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(checkIcon[9])))
+        attractionToggled[9] = 0;
+    else
+        attractionToggled[9] = 1;
+}
+
+void on_checkIcon11_toggled()
+{
+    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(checkIcon[10])))
+        attractionToggled[10] = 0;
+    else
+        attractionToggled[10] = 1;
+}
+
+void on_buttonValidate_clicked(GtkButton* button)
+{
     game.disc.posOrNeg = FALSE;
     game.disc.step.x = step[game.disc.attractionIn];
-    on_start(button, &game);
+
+    for (int i = 0; i < nbOfAttractions; i += 1)
+    {
+        if (attractionToggled[i] == 0)
+        {
+            game.disc.attractionGo = attractions[i + 1].number;
+            game.disc.posX = attractions[i + 1].posX;
+            game.disc.posY = attractions[i + 1].posY;
+            on_start(button, &game);
+            break;
+        }
+    }
 }
 
 //WHEN SOMEONE GOES IN AN ATTRACTION
