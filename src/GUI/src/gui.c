@@ -5,6 +5,7 @@
 #include <gtk/gtk.h>
 #include <gtk/gtkx.h>
 #include <gdk/gdkscreen.h>
+#include <gdk/gdk.h>
 #include <cairo.h>
 #include "move.h"
 #include "../../IA/src/population.h"
@@ -64,19 +65,6 @@ GtkWidget* road10;
 GtkWidget* road11;
 GtkWidget* road12;
 
-GtkWidget* buttonIcon1;
-GtkWidget* buttonIcon2;
-GtkWidget* buttonIcon3;
-GtkWidget* buttonIcon4;
-GtkWidget* buttonIcon5;
-GtkWidget* buttonIcon6;
-GtkWidget* buttonIcon7;
-GtkWidget* buttonIcon8;
-GtkWidget* buttonIcon9;
-GtkWidget* buttonIcon10;
-GtkWidget* buttonIcon11;
-GtkWidget* buttonIcon12;
-
 GtkWidget* buttonPath;
 
 GtkWidget* checkIcon1;
@@ -103,6 +91,19 @@ GtkWidget* iconSmall9;
 GtkWidget* iconSmall10;
 GtkWidget* iconSmall11;
 
+GtkWidget* color1;
+GtkWidget* color2;
+GtkWidget* color3;
+GtkWidget* color4;
+GtkWidget* color5;
+GtkWidget* color6;
+GtkWidget* color7;
+GtkWidget* color8;
+GtkWidget* color9;
+GtkWidget* color10;
+GtkWidget* color11;
+
+
 // VARIABLES FOR ALGORITHMS -----------------
 
 int nbOfHumans = 5;
@@ -114,9 +115,12 @@ parc* parcGUI;
 GtkWidget* icon[12];
 GtkWidget* label[11];
 GtkWidget* road[12];
-GtkWidget* buttonIcon[12];
 GtkWidget* checkIcon[11];
 GtkWidget* iconSmall[11];
+
+GdkRGBA red;
+GdkRGBA orange;
+GdkRGBA green;
 
 typedef struct
 {
@@ -181,23 +185,6 @@ void create_icon_array(GtkWidget* icon[12])
     icon[9] = icon10;
     icon[10] = icon11;
     //icon[11] = icon12;
-}
-
-//create array of the buttons of icons
-void create_buttonIcon_array(GtkWidget* buttonIcon[12])
-{
-    buttonIcon[0] = buttonIcon1;
-    buttonIcon[1] = buttonIcon2;
-    buttonIcon[2] = buttonIcon3;
-    buttonIcon[3] = buttonIcon4;
-    buttonIcon[4] = buttonIcon5;
-    buttonIcon[5] = buttonIcon6;
-    buttonIcon[6] = buttonIcon7;
-    buttonIcon[7] = buttonIcon8;
-    buttonIcon[8] = buttonIcon9;
-    buttonIcon[9] = buttonIcon10;
-    buttonIcon[10] = buttonIcon11;
-    buttonIcon[11] = buttonIcon12;
 }
 
 //create array of the labels
@@ -348,19 +335,6 @@ int main(int agrc, char* argv[])
     road11 = GTK_WIDGET(gtk_builder_get_object(builder, "road11"));
     road12 = GTK_WIDGET(gtk_builder_get_object(builder, "road12"));
 
-    buttonIcon1 = GTK_WIDGET(gtk_builder_get_object(builder, "buttonIcon1"));
-    buttonIcon2 = GTK_WIDGET(gtk_builder_get_object(builder, "buttonIcon2"));
-    buttonIcon3 = GTK_WIDGET(gtk_builder_get_object(builder, "buttonIcon3"));
-    buttonIcon4 = GTK_WIDGET(gtk_builder_get_object(builder, "buttonIcon4"));
-    buttonIcon5 = GTK_WIDGET(gtk_builder_get_object(builder, "buttonIcon5"));
-    buttonIcon6 = GTK_WIDGET(gtk_builder_get_object(builder, "buttonIcon6"));
-    buttonIcon7 = GTK_WIDGET(gtk_builder_get_object(builder, "buttonIcon7"));
-    buttonIcon8 = GTK_WIDGET(gtk_builder_get_object(builder, "buttonIcon8"));
-    buttonIcon9 = GTK_WIDGET(gtk_builder_get_object(builder, "buttonIcon9"));
-    buttonIcon10 = GTK_WIDGET(gtk_builder_get_object(builder, "buttonIcon10"));
-    buttonIcon11 = GTK_WIDGET(gtk_builder_get_object(builder, "buttonIcon11"));
-    buttonIcon12 = GTK_WIDGET(gtk_builder_get_object(builder, "buttonIcon12"));
-
     button1bis = GTK_WIDGET(gtk_builder_get_object(builder, "button1bis"));
 
     buttonPath = GTK_WIDGET(gtk_builder_get_object(builder, "buttonPath"));
@@ -388,6 +362,43 @@ int main(int agrc, char* argv[])
     iconSmall9 = GTK_WIDGET(gtk_builder_get_object(builder, "iconSmall9"));
     iconSmall10 = GTK_WIDGET(gtk_builder_get_object(builder, "iconSmall10"));
     iconSmall11 = GTK_WIDGET(gtk_builder_get_object(builder, "iconSmall11"));
+
+    color1 = GTK_WIDGET(gtk_builder_get_object(builder, "color1"));
+    color2 = GTK_WIDGET(gtk_builder_get_object(builder, "color2"));
+    color3 = GTK_WIDGET(gtk_builder_get_object(builder, "color3"));
+    color4 = GTK_WIDGET(gtk_builder_get_object(builder, "color4"));
+    color5 = GTK_WIDGET(gtk_builder_get_object(builder, "color5"));
+    color6 = GTK_WIDGET(gtk_builder_get_object(builder, "color6"));
+    color7 = GTK_WIDGET(gtk_builder_get_object(builder, "color7"));
+    color8 = GTK_WIDGET(gtk_builder_get_object(builder, "color8"));
+    color9 = GTK_WIDGET(gtk_builder_get_object(builder, "color9"));
+    color10 = GTK_WIDGET(gtk_builder_get_object(builder, "color10"));
+    color11 = GTK_WIDGET(gtk_builder_get_object(builder, "color11"));
+
+    red.red = 1.0;
+    red.green = 0.0;
+    red.blue = 0.0;
+    red.alpha = 1.0;
+    orange.red = 1.0;
+    orange.green = 0.6;
+    orange.blue = 0.0;
+    orange.alpha = 1.0;
+    green.red = 0.0;
+    green.green = 0.9;
+    green.blue = 0.0;
+    green.alpha = 1.0;
+
+    gtk_widget_override_background_color(color1, GTK_STATE_FLAG_NORMAL, &green);
+    gtk_widget_override_background_color(color2, GTK_STATE_FLAG_NORMAL, &green);
+    gtk_widget_override_background_color(color3, GTK_STATE_FLAG_NORMAL, &green);
+    gtk_widget_override_background_color(color4, GTK_STATE_FLAG_NORMAL, &green);
+    gtk_widget_override_background_color(color5, GTK_STATE_FLAG_NORMAL, &green);
+    gtk_widget_override_background_color(color6, GTK_STATE_FLAG_NORMAL, &green);
+    gtk_widget_override_background_color(color7, GTK_STATE_FLAG_NORMAL, &green);
+    gtk_widget_override_background_color(color8, GTK_STATE_FLAG_NORMAL, &green);
+    gtk_widget_override_background_color(color9, GTK_STATE_FLAG_NORMAL, &green);
+    gtk_widget_override_background_color(color10, GTK_STATE_FLAG_NORMAL, &green);
+    gtk_widget_override_background_color(color11, GTK_STATE_FLAG_NORMAL, &green);
 
     gtk_widget_show(window1);
 
@@ -477,19 +488,14 @@ void on_button1_clicked(__attribute__((unused)) GtkButton *button)
     create_icon_array(icon);
     create_label_array(label);
     create_road_array(road);
-    create_buttonIcon_array(buttonIcon);
     create_iconSmall_array(iconSmall);
     create_check_array(checkIcon);
-
-    for (int i = 11; i >= 0; i -= 1)
-        gtk_widget_set_opacity(buttonIcon[i], 0);
 
     for (int i = 11; i > 1; i -= 1)
     {
         //gtk_widget_show(icon[i]);
         //gtk_widget_show(label[i]);
         gtk_widget_show(road[i]);
-        gtk_widget_show(buttonIcon[i]);
     }
 
     for (int i = 10; i > 1; i -= 1)
@@ -513,7 +519,6 @@ void on_button1_clicked(__attribute__((unused)) GtkButton *button)
         //gtk_widget_hide(icon[i]);
         //gtk_widget_hide(label[i]);
         gtk_widget_hide(road[i]);
-        gtk_widget_hide(buttonIcon[i]);
     }
 
     //START TIMER
@@ -595,66 +600,6 @@ void on_button1bis_clicked()
     game.disc.attractionGo = 1;
     game.disc.posX = 469;
     game.disc.posY = 110;
-}
-
-void on_buttonIcon1_clicked()
-{
-
-}
-
-void on_buttonIcon2_clicked()
-{
-
-}
-
-void on_buttonIcon3_clicked()
-{
-
-}
-
-void on_buttonIcon4_clicked()
-{
-    
-}
-
-void on_buttonIcon5_clicked()
-{
-    
-}
-
-void on_buttonIcon6_clicked()
-{
-    
-}
-
-void on_buttonIcon7_clicked()
-{
-    
-}
-
-void on_buttonIcon8_clicked()
-{
-    
-}
-
-void on_buttonIcon9_clicked()
-{
-    
-}
-
-void on_buttonIcon10_clicked()
-{
-    
-}
-
-void on_buttonIcon11_clicked()
-{
-    
-}
-
-void on_buttonIcon12_clicked()
-{
-    
 }
 
 void on_buttonPath_clicked(GtkButton* button)
