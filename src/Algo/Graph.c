@@ -28,9 +28,11 @@ struct Graph* createGraph(int n, struct list* List, int nbEdges)
 		
 		
 		graph->adjLists[src][dest] = List->data.cost;	
-        	
+        	graph->adjLists[dest][src] = List->data.cost;
+		
 		newNode->next = graph->head[src];
         	graph->head[src] = newNode;
+		
 		List = List->next;
     	}
 	return graph;
@@ -71,12 +73,13 @@ void printGraph(struct Graph* graph, int n)
         }
     
 	// calculate the total number of edges
-    int n = sizeof(edges)/sizeof(edges[0]);
+    int n = 5;
+    int l =sizeof(edges)/sizeof(edges[0]);
     
 	// construct a graph from the given edges
-    struct Graph *graph = createGraph(n,List);
+    struct Graph *graph = createGraph(n,List, l);
 
-    for(int i = 0; i < n; i++)
+   for(int i = 0; i < n; i++)
     {
 	    for(int j = 0; j < n; j++)
 	    {
@@ -85,7 +88,7 @@ void printGraph(struct Graph* graph, int n)
 	    printf("\n");
     }
     // Function to print adjacency list representation of a graph
-   printGraph(graph);	
+   printGraph(graph,n);	
     return 0;
-}*/
-
+}
+*/

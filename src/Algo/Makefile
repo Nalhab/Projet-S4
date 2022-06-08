@@ -10,5 +10,4 @@ List: List.o
 
 clean:
 	${RM} Floyd Floyd.o
-	${RM} Graph Graph.o
 	${RM} List List.o

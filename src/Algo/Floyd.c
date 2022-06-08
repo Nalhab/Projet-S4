@@ -1,6 +1,6 @@
 #include "Graph.h"
 #include <stdio.h>
-#define len 5  //Number of vertice 
+#define len 12  //Number of vertice 
 #define INF 999
 
 void printMatrix(int matrix[][len]);
@@ -48,10 +48,28 @@ int main() {
 	//All edges of the Graph
         struct Edge edges[] =
             {
-                    {0, 1, 1}, {1, 2, 2}, {2, 3, 3}, {3, 4, 4}, {4, 0, 5}
+                    {0, 1, 1}, {0, 2, 2}, {0, 3, 3}, {0, 4, 1}, {0, 5, 2},
+		    {0, 6, 1}, {0, 7, 1}, {0, 8, 4}, {0, 9, 3}, {0, 10, 2},
+		    {0, 11, 1},
+		    {1, 2, 1}, {1, 3, 2}, {1, 4, 3}, {1, 4, 4}, {1, 6, 5},
+		    {1, 7, 1}, {1, 8, 2}, {1, 9, 1}, {1, 10, 1}, {1, 11, 2},
+		    {2, 3, 1}, {2, 4, 2}, {2, 5, 3}, {2, 6, 4}, {2, 7, 2},
+		    {2, 8, 3}, {2, 9, 2}, {2, 10, 2}, {2, 11, 3},
+		    {3, 4, 1}, {3, 5, 2}, {3, 6, 3}, {3, 7, 1}, {3, 8, 2},
+		    {3, 9, 1}, {3, 10, 1}, {3, 11, 2},
+		    {4, 5, 1}, {4, 6, 2}, {4, 7, 3}, {4, 8, 2}, {4, 9, 1},
+		    {4, 10, 1}, {4, 11, 2},
+		    {5, 6, 1}, {5, 7, 2}, {5, 8, 3}, {5, 9, 4}, {5, 10, 2},
+		    {5, 11, 2},
+		    {6, 7, 1}, {6, 8, 2}, {6, 9, 3}, {6, 10, 1}, {6, 11, 2},
+		    {7, 8, 1}, {7, 9, 2}, {7, 10, 3}, {7, 11, 4},
+		    {8, 9, 1}, {8, 10, 2}, {8, 11, 3},
+		    {9, 10, 1}, {9, 11, 2},
+		    {10, 11, 1}  
+		    //{1, 2, 2}, {2, 3, 3}, {3, 4, 4}, {4, 0, 5}
 		    //, {0, 3, 1},{3, 0, -2}
             };
-	int n = 5;
+	int n = 12;
 	int l = sizeof(edges)/sizeof(edges[0]);
     	struct list* List = malloc(sizeof(struct list));
         List->data = edges[0];
@@ -65,9 +83,20 @@ int main() {
         } 
         //printf("\n");
 	struct Graph *graph = createGraph(n, List, l);
+	for(int i = 0; i < parc->nbatt; i++)
+	{
+		for(int j = 0; j < n; j++)
+		{
+			int val = graph->adjLists[i][j] + 
+			parc->att->nbpeople/10 + parc->att->nbpeople%10;
+			graph->adjLists[i][j] = val;
+		}
+		parc->att++;
+
+	}
 	
 	//Liste d'adjacense du Graph
-	/*for(int i = 0; i < n; i++)
+	for(int i = 0; i < n; i++)
 	{
 		for(int j = 0; j < n; j++)
 		{
@@ -75,10 +104,10 @@ int main() {
 		}
 		printf("\n");
 	}
-	printf("\n");*/
+	printf("\n");
 
 	printf("Edges of the Graph :\n\n");
-	printGraph(graph, n);
+	//printGraph(graph, n);
 	//set all 0 to Inf
 	for(int i = 0; i < n; i++)
 	{
