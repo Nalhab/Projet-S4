@@ -117,10 +117,13 @@ GtkWidget* label[11];
 GtkWidget* road[12];
 GtkWidget* checkIcon[11];
 GtkWidget* iconSmall[11];
+GtkWidget* color[11];
 
 GdkRGBA red;
 GdkRGBA orange;
 GdkRGBA green;
+
+float attractionColor;
 
 typedef struct
 {
@@ -150,6 +153,7 @@ int nbSeconds = 0;
 guint threadID = 0;
 guint humanID = 0;
 guint iaID = 0;
+guint colorID = 0;
 
 // ------------------------------------------
 
@@ -248,6 +252,21 @@ void create_check_array(GtkWidget* checkIcon[11])
     checkIcon[8] = checkIcon9;
     checkIcon[9] = checkIcon10;
     checkIcon[10] = checkIcon11;
+}
+
+void create_color_array(GtkWidget* color[11])
+{
+    color[0] = color1;
+    color[1] = color2;
+    color[2] = color3;
+    color[3] = color4;
+    color[4] = color5;
+    color[5] = color6;
+    color[6] = color7;
+    color[7] = color8;
+    color[8] = color9;
+    color[9] = color10;
+    color[10] = color11;
 }
 
 Game game =
@@ -463,14 +482,35 @@ int timeoutLabel()
 {
     nbOfHumans = 0;
 
-    for(size_t i = 0; i < parcGUI->nbatt; i++)
+    for(size_t i = 0; i < parcGUI->nbatt; i += 1)
     {
-        attraction* att = *(parcGUI->att+i);
+        attraction* att = *(parcGUI->att + i);
         updateLabel(GTK_LABEL(label[i]), att->nbpeople);
         nbOfHumans += att->nbpeople;
     }
 
     updateLabel(GTK_LABEL(labelHumans), nbOfHumans);
+
+    if (nbOfHumans == 0)
+        return 0;
+    else
+        return 1;
+}
+
+int updateColor()
+{
+    for (int i = 0; i < nbOfAttractions; i += 1)
+    {
+        attraction* att = *(parcGUI->att + i);
+        attractionColor = nbOfAttractions / (float)att->nbpeople;
+        
+        if (attractionColor <= 0.275)
+            gtk_widget_override_background_color(color[i], GTK_STATE_NORMAL, &red);
+        else if (attractionColor <= 0.55)
+            gtk_widget_override_background_color(color[i], GTK_STATE_NORMAL, &orange);
+        else
+            gtk_widget_override_background_color(color[i], GTK_STATE_NORMAL, &green);
+    }
 
     if (nbOfHumans == 0)
         return 0;
@@ -490,6 +530,7 @@ void on_button1_clicked(__attribute__((unused)) GtkButton *button)
     create_road_array(road);
     create_iconSmall_array(iconSmall);
     create_check_array(checkIcon);
+    create_color_array(color);
 
     for (int i = 11; i > 1; i -= 1)
     {
@@ -504,6 +545,8 @@ void on_button1_clicked(__attribute__((unused)) GtkButton *button)
         gtk_widget_show(label[i]);
         gtk_widget_show(iconSmall[i]);
         gtk_widget_show(checkIcon[i]);
+        gtk_widget_override_background_color(color[i], GTK_STATE_FLAG_NORMAL, &green);
+        gtk_widget_show(color[i]);
     }
 
     for (int i = 10; i > nbOfAttractions - 1; i -= 1)
@@ -512,6 +555,7 @@ void on_button1_clicked(__attribute__((unused)) GtkButton *button)
         gtk_widget_hide(label[i]);
         gtk_widget_hide(iconSmall[i]);
         gtk_widget_hide(checkIcon[i]);
+        gtk_widget_hide(color[i]);
     }
 
     for (int i = 11; i > nbOfAttractions; i -= 1)
@@ -538,6 +582,7 @@ void on_button1_clicked(__attribute__((unused)) GtkButton *button)
     timeoutLabel();
     humanID = g_timeout_add(200, timeoutLabel, NULL);
     iaID = g_timeout_add(2000, loop2, NULL);
+    colorID = g_timeout_add(2000, updateColor, NULL);
 
     // TEST :
     //printf("%i\n", nbOfHumans);
@@ -580,6 +625,7 @@ void on_button1bis_clicked()
         g_source_remove(threadID);
         g_source_remove(humanID);
         g_source_remove(iaID);
+        g_source_remove(colorID);
     }
 
     for (int i = 0; i < nbOfAttractions; i += 1)
