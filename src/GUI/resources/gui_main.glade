@@ -605,174 +605,6 @@
           </packing>
         </child>
         <child>
-          <object class="GtkButton" id="buttonIcon1">
-            <property name="label" translatable="yes">
-</property>
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <signal name="clicked" handler="on_buttonIcon1_clicked" swapped="no"/>
-          </object>
-          <packing>
-            <property name="x">290</property>
-            <property name="y">30</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkButton" id="buttonIcon2">
-            <property name="label" translatable="yes">
-</property>
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <signal name="clicked" handler="on_buttonIcon2_clicked" swapped="no"/>
-          </object>
-          <packing>
-            <property name="x">450</property>
-            <property name="y">27</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkButton" id="buttonIcon3">
-            <property name="label" translatable="yes">
-</property>
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <signal name="clicked" handler="on_buttonIcon3_clicked" swapped="no"/>
-          </object>
-          <packing>
-            <property name="x">575</property>
-            <property name="y">100</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkButton" id="buttonIcon4">
-            <property name="label" translatable="yes">
-</property>
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <signal name="clicked" handler="on_buttonIcon4_clicked" swapped="no"/>
-          </object>
-          <packing>
-            <property name="x">648</property>
-            <property name="y">180</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkButton" id="buttonIcon5">
-            <property name="label" translatable="yes">
-</property>
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <signal name="clicked" handler="on_buttonIcon5_clicked" swapped="no"/>
-          </object>
-          <packing>
-            <property name="x">650</property>
-            <property name="y">278</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkButton" id="buttonIcon6">
-            <property name="label" translatable="yes">
-</property>
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <signal name="clicked" handler="on_buttonIcon6_clicked" swapped="no"/>
-          </object>
-          <packing>
-            <property name="x">576</property>
-            <property name="y">360</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkButton" id="buttonIcon7">
-            <property name="label" translatable="yes">
-</property>
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <signal name="clicked" handler="on_buttonIcon7_clicked" swapped="no"/>
-          </object>
-          <packing>
-            <property name="x">450</property>
-            <property name="y">430</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkButton" id="buttonIcon8">
-            <property name="label" translatable="yes">
-</property>
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <signal name="clicked" handler="on_buttonIcon8_clicked" swapped="no"/>
-          </object>
-          <packing>
-            <property name="x">290</property>
-            <property name="y">428</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkButton" id="buttonIcon9">
-            <property name="label" translatable="yes">
-</property>
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <signal name="clicked" handler="on_buttonIcon9_clicked" swapped="no"/>
-          </object>
-          <packing>
-            <property name="x">165</property>
-            <property name="y">359</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkButton" id="buttonIcon10">
-            <property name="label" translatable="yes">
-</property>
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <signal name="clicked" handler="on_buttonIcon10_clicked" swapped="no"/>
-          </object>
-          <packing>
-            <property name="x">90</property>
-            <property name="y">278</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkButton" id="buttonIcon11">
-            <property name="label" translatable="yes">
-</property>
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <signal name="clicked" handler="on_buttonIcon11_clicked" swapped="no"/>
-          </object>
-          <packing>
-            <property name="x">95</property>
-            <property name="y">178</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkButton" id="buttonIcon12">
-            <property name="label" translatable="yes">
-</property>
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <signal name="clicked" handler="on_buttonIcon12_clicked" swapped="no"/>
-          </object>
-          <packing>
-            <property name="x">175</property>
-            <property name="y">100</property>
-          </packing>
-        </child>
-        <child>
           <object class="GtkButton" id="buttonPath">
             <property name="label" translatable="yes">
 </property>
@@ -1061,6 +893,127 @@
           <packing>
             <property name="x">840</property>
             <property name="y">435</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkImage" id="color1">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="stock">gtk-discard</property>
+          </object>
+          <packing>
+            <property name="x">514</property>
+            <property name="y">58</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkImage" id="color2">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="stock">gtk-discard</property>
+          </object>
+          <packing>
+            <property name="x">638</property>
+            <property name="y">133</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkImage" id="color3">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="stock">gtk-discard</property>
+          </object>
+          <packing>
+            <property name="x">714</property>
+            <property name="y">211</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkImage" id="color4">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="stock">gtk-discard</property>
+          </object>
+          <packing>
+            <property name="x">714</property>
+            <property name="y">308</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkImage" id="color5">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="stock">gtk-discard</property>
+          </object>
+          <packing>
+            <property name="x">638</property>
+            <property name="y">389</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkImage" id="color6">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="stock">gtk-discard</property>
+          </object>
+          <packing>
+            <property name="x">514</property>
+            <property name="y">462</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkImage" id="color7">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="stock">gtk-discard</property>
+          </object>
+          <packing>
+            <property name="x">261</property>
+            <property name="y">462</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkImage" id="color8">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="stock">gtk-discard</property>
+          </object>
+          <packing>
+            <property name="x">133</property>
+            <property name="y">389</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkImage" id="color9">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="stock">gtk-discard</property>
+          </object>
+          <packing>
+            <property name="x">62</property>
+            <property name="y">309</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkImage" id="color10">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="stock">gtk-discard</property>
+          </object>
+          <packing>
+            <property name="x">62</property>
+            <property name="y">212</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkImage" id="color11">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="stock">gtk-discard</property>
+          </object>
+          <packing>
+            <property name="x">133</property>
+            <property name="y">134</property>
           </packing>
         </child>
       </object>
