@@ -6,10 +6,10 @@
 #define len 12
 #define INF 999
 
-void printMatrix(int matrix[][len]);
+void printMatrix(int** matrix);
 
-void floydWarshall(int** graph, int n);
+int** floydWarshall(int** graph, int n);
 
-void printMatrix(int matrix[][len]);
+void printMatrix(int** matrix);
 
 int** FUNCTION(parc* parcGUI);

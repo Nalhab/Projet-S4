@@ -1,11 +1,15 @@
 #include "Floyd.h"
 #include <stdio.h>
 
-void printMatrix(int matrix[][len]);
+void printMatrix(int** matrix);
 
-void floydWarshall(int** graph, int n) 
+int** floydWarshall(int** graph, int n) 
 {
-	int res[n][n];
+	int** res = calloc(n, sizeof(int*));
+	for(int i = 0; i < n; i++)
+        {
+                res[i] = calloc(n,sizeof(int));
+        }	
        	int i, j, k;
 	
 	for (i = 0; i < n; i++)
@@ -24,9 +28,10 @@ void floydWarshall(int** graph, int n)
     		}
   	}
 	printMatrix(res);
+	return res;
 }
 
-void printMatrix(int matrix[][len])
+void printMatrix(int** matrix)
 {
 	for (int i = 0; i < len; i++) 
 	{
@@ -46,13 +51,16 @@ void adjList_refresh(parc* parcGUI, int n, struct Graph* graph)
 {
         for(size_t i = 0; i < parcGUI->nbatt; i++)
         {
-                for(int j = 0; j < n; j++)
+                for(size_t j = 0; j < (size_t)n; j++)
                 {
-			attraction* att = *(parcGUI->att + i);
-                        int val = graph->adjLists[i][j] + 
-			att->nbpeople/10 + att->nbpeople%10;
-                        graph->adjLists[i][j] = val;
-                }
+			if( i != j)
+			{
+				attraction* att = *(parcGUI->att + i);
+                        	int val = graph->adjLists[i][j] + 
+				att->nbpeople/10 + att->nbpeople%10;
+                        	graph->adjLists[i][j] = val;
+                	}
+		}
 
         }
 }
@@ -125,6 +133,6 @@ int** FUNCTION(parc* parcGUI) {
 
 	printf("Result of the Floyd algorithm :\n\n");
 	//call Floyd function
-	floydWarshall(graph->adjLists, n);
-	return graph->adjLists;
+	int **res = floydWarshall(graph->adjLists, n);
+	return res;
 }

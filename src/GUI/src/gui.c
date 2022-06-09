@@ -472,7 +472,14 @@ int loop2()
     att->likeness += 3;
     parcGUI->totlikeness += 3;
     AdjList = FUNCTION(parcGUI); 
-
+    printf("\n");
+    for(int i = 0; i < nbOfAttractions+1; i++)
+    {
+	    if( i != game.disc.attractionIn)
+	    	printf("Attraction %d -> %d = %d\n", game.disc.attractionIn, i, 
+				AdjList[game.disc.attractionIn][i]);
+    }
+    printf("\n");
     if (parcGUI->nbpeople > 0)
         parcGUI->nbpeople = 0;
     
