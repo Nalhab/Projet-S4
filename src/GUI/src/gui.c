@@ -103,6 +103,18 @@ GtkWidget* color9;
 GtkWidget* color10;
 GtkWidget* color11;
 
+GtkWidget* cost1;
+GtkWidget* cost2;
+GtkWidget* cost3;
+GtkWidget* cost4;
+GtkWidget* cost5;
+GtkWidget* cost6;
+GtkWidget* cost7;
+GtkWidget* cost8;
+GtkWidget* cost9;
+GtkWidget* cost10;
+GtkWidget* cost11;
+
 
 // VARIABLES FOR ALGORITHMS -----------------
 
@@ -118,6 +130,7 @@ GtkWidget* road[12];
 GtkWidget* checkIcon[11];
 GtkWidget* iconSmall[11];
 GtkWidget* color[11];
+GtkWidget* cost[11];
 
 GdkRGBA red;
 GdkRGBA orange;
@@ -163,9 +176,9 @@ guint colorID = 0;
 // + or - nb of people in the attraction
 void updateLabel(GtkLabel *sum, int num)
 {
-    gchar *display;
+    gchar* display;
     display = g_strdup_printf("%d", num);         //convert num to str
-    gtk_label_set_text (GTK_LABEL(sum), display); //set label to "display"
+    gtk_label_set_text(sum, display); //set label to "display"
     g_free(display);                              //free display
 }
 
@@ -270,6 +283,21 @@ void create_color_array(GtkWidget* color[11])
     color[8] = color9;
     color[9] = color10;
     color[10] = color11;
+}
+
+void create_cost_array(GtkWidget* cost[11])
+{
+    cost[0] = cost1;
+    cost[1] = cost2;
+    cost[2] = cost3;
+    cost[3] = cost4;
+    cost[4] = cost5;
+    cost[5] = cost6;
+    cost[6] = cost7;
+    cost[7] = cost8;
+    cost[8] = cost9;
+    cost[9] = cost10;
+    cost[10] = cost11;
 }
 
 Game game =
@@ -397,6 +425,18 @@ int main(int agrc, char* argv[])
     color10 = GTK_WIDGET(gtk_builder_get_object(builder, "color10"));
     color11 = GTK_WIDGET(gtk_builder_get_object(builder, "color11"));
 
+    cost1 = GTK_WIDGET(gtk_builder_get_object(builder, "cost1"));
+    cost2 = GTK_WIDGET(gtk_builder_get_object(builder, "cost2"));
+    cost3 = GTK_WIDGET(gtk_builder_get_object(builder, "cost3"));
+    cost4 = GTK_WIDGET(gtk_builder_get_object(builder, "cost4"));
+    cost5 = GTK_WIDGET(gtk_builder_get_object(builder, "cost5"));
+    cost6 = GTK_WIDGET(gtk_builder_get_object(builder, "cost6"));
+    cost7 = GTK_WIDGET(gtk_builder_get_object(builder, "cost7"));
+    cost8 = GTK_WIDGET(gtk_builder_get_object(builder, "cost8"));
+    cost9 = GTK_WIDGET(gtk_builder_get_object(builder, "cost9"));
+    cost10 = GTK_WIDGET(gtk_builder_get_object(builder, "cost10"));
+    cost11 = GTK_WIDGET(gtk_builder_get_object(builder, "cost11"));
+
     red.red = 1.0;
     red.green = 0.0;
     red.blue = 0.0;
@@ -457,14 +497,14 @@ int loop2()
     //srand(time(NULL));
     //sleep(2);
 
-    for(size_t i = 0; i < parcGUI->nbatt; i++)
+    for (size_t i = 0; i < parcGUI->nbatt; i += 1)
     {
         att = *(atts+i);
 
-        for (size_t j = 0; j < att->capacity && att->nbpeople > 0; j++)
+        for (size_t j = 0; j < att->capacity && att->nbpeople > 0; j += 1)
         {
             dest(parcGUI);
-            att->nbpeople--;
+            att->nbpeople -= 1;
         }
     }
 
@@ -473,11 +513,16 @@ int loop2()
     parcGUI->totlikeness += 3;
     AdjList = FUNCTION(parcGUI); 
     printf("\n");
-    for(int i = 0; i < nbOfAttractions+1; i++)
+    for(int i = 0; i < nbOfAttractions + 1; i += 1)
     {
-	    if( i != game.disc.attractionIn)
-	    	printf("Attraction %d -> %d = %d\n", game.disc.attractionIn, i, 
+	    if (i != game.disc.attractionIn)
+	    {
+            printf("Attraction %d -> %d = %d\n", game.disc.attractionIn, i, 
 				AdjList[game.disc.attractionIn][i]);
+        }
+
+        if (i != 11)
+            updateLabel(GTK_LABEL(cost[i]), AdjList[game.disc.attractionIn][i + 1]);
     }
     printf("\n");
     if (parcGUI->nbpeople > 0)
@@ -543,6 +588,7 @@ void on_button1_clicked(__attribute__((unused)) GtkButton *button)
     create_iconSmall_array(iconSmall);
     create_check_array(checkIcon);
     create_color_array(color);
+    create_cost_array(cost);
 
     for (int i = 11; i > 1; i -= 1)
     {
@@ -559,6 +605,7 @@ void on_button1_clicked(__attribute__((unused)) GtkButton *button)
         gtk_widget_show(checkIcon[i]);
         gtk_widget_override_background_color(color[i], GTK_STATE_FLAG_NORMAL, &green);
         gtk_widget_show(color[i]);
+        gtk_widget_show(cost[i]);
     }
 
     for (int i = 10; i > nbOfAttractions - 1; i -= 1)
@@ -568,6 +615,7 @@ void on_button1_clicked(__attribute__((unused)) GtkButton *button)
         gtk_widget_hide(iconSmall[i]);
         gtk_widget_hide(checkIcon[i]);
         gtk_widget_hide(color[i]);
+        gtk_widget_hide(cost[i]);
     }
 
     for (int i = 11; i > nbOfAttractions; i -= 1)
@@ -648,6 +696,12 @@ void on_button1bis_clicked()
     game.disc.rect.x = 310;
     game.disc.rect.y = 110;
 
+    for (int i = 0; i < 11; i += 1)
+    {
+        updateLabel(GTK_LABEL(label[i]), 0);
+        updateLabel(GTK_LABEL(cost[i]), 0);
+    }
+
     //TEMP
     if (game.disc.event != 0)
         g_source_remove(game.disc.event);
@@ -661,11 +715,22 @@ void on_button1bis_clicked()
     game.disc.posY = 110;
 }
 
+//TEMP FUNCTION
 void on_buttonPath_clicked(GtkButton* button)
 {
     //game.disc.posOrNeg = FALSE;
     //game.disc.step.x = step[game.disc.attractionIn];
     on_start(button, &game);
+    
+
+    //TEMP
+    /*if (iaID == 0)
+        iaID = g_timeout_add(2000, loop2, NULL);
+    else
+    {
+        g_source_remove(iaID);
+        iaID = 0;
+    }*/
 }
 
 void on_checkIcon1_toggled()
