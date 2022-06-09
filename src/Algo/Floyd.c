@@ -1,7 +1,5 @@
-#include "Graph.h"
+#include "Floyd.h"
 #include <stdio.h>
-#define len 12  //Number of vertice 
-#define INF 999
 
 void printMatrix(int matrix[][len]);
 
@@ -44,8 +42,24 @@ void printMatrix(int matrix[][len])
   	}
 }
 
-int main() {
+void adjList_refresh(parc* parcGUI, int n, struct Graph* graph)
+{
+        for(size_t i = 0; i < parcGUI->nbatt; i++)
+        {
+                for(int j = 0; j < n; j++)
+                {
+			attraction* att = *(parcGUI->att + i);
+                        int val = graph->adjLists[i][j] + 
+			att->nbpeople/10 + att->nbpeople%10;
+                        graph->adjLists[i][j] = val;
+                }
+
+        }
+}
+
+int** FUNCTION(parc* parcGUI) {
 	//All edges of the Graph
+	printf("0\n");
         struct Edge edges[] =
             {
                     {0, 1, 1}, {0, 2, 2}, {0, 3, 3}, {0, 4, 1}, {0, 5, 2},
@@ -66,35 +80,25 @@ int main() {
 		    {8, 9, 1}, {8, 10, 2}, {8, 11, 3},
 		    {9, 10, 1}, {9, 11, 2},
 		    {10, 11, 1}  
-		    //{1, 2, 2}, {2, 3, 3}, {3, 4, 4}, {4, 0, 5}
-		    //, {0, 3, 1},{3, 0, -2}
             };
 	int n = 12;
 	int l = sizeof(edges)/sizeof(edges[0]);
     	struct list* List = malloc(sizeof(struct list));
         List->data = edges[0];
+	list_init(List);
 	for(int i = 1; i < l; i++)
         {
                 struct list* nList = malloc(sizeof(struct list));
                 nList->data = edges[i];
+		list_init(nList);
                 list_push_front(List, nList);
 		//printf("%d, %d\n" ,edges[i].src,edges[i].dest); //Visualisation de 
 		//l'ajout des liaisons dans la liste
-        } 
+        }
+       	printf("2\n");	
         //printf("\n");
 	struct Graph *graph = createGraph(n, List, l);
-	for(int i = 0; i < parc->nbatt; i++)
-	{
-		for(int j = 0; j < n; j++)
-		{
-			int val = graph->adjLists[i][j] + 
-			parc->att->nbpeople/10 + parc->att->nbpeople%10;
-			graph->adjLists[i][j] = val;
-		}
-		parc->att++;
-
-	}
-	
+	adjList_refresh(parcGUI, n, graph);	
 	//Liste d'adjacense du Graph
 	for(int i = 0; i < n; i++)
 	{
@@ -122,4 +126,5 @@ int main() {
 	printf("Result of the Floyd algorithm :\n\n");
 	//call Floyd function
 	floydWarshall(graph->adjLists, n);
+	return graph->adjLists;
 }

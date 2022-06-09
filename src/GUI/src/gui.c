@@ -8,7 +8,7 @@
 #include <gdk/gdk.h>
 #include <cairo.h>
 #include "move.h"
-#include "../../IA/src/population.h"
+#include "../../Algo/Floyd.h"
 
 GtkWidget* window1;
 GtkWidget* fixed1;
@@ -468,7 +468,9 @@ int loop2()
     att = *(atts + parcGUI->nbatt);
     att->likeness += 3;
     parcGUI->totlikeness += 3;
-    
+    int **adjL = FUNCTION(parcGUI); 
+    adjL = adjL;   
+
     if (parcGUI->nbpeople > 0)
         parcGUI->nbpeople = 0;
     
@@ -477,6 +479,7 @@ int loop2()
     else
         return 1;
 }
+
 
 int timeoutLabel()
 {
@@ -582,6 +585,7 @@ void on_button1_clicked(__attribute__((unused)) GtkButton *button)
     timeoutLabel();
     humanID = g_timeout_add(200, timeoutLabel, NULL);
     iaID = g_timeout_add(2000, loop2, NULL);
+
     colorID = g_timeout_add(2000, updateColor, NULL);
 
     // TEST :

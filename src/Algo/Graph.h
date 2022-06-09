@@ -1,6 +1,7 @@
+#define GRAPH_H
+#include "List.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "List.h"
 
 // Define the maximum number of vertices in the graph
 #define N 5 

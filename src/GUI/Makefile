@@ -21,7 +21,7 @@ COLOR_WHITE = \e[1;37m
 all: $(EXEC)
 
 $(EXEC): $(OBJS)
-	$(CC) -o $@ $(OBJS) obj/population.o obj/attraction.o $(CFLAGS) $(LDLIBS)
+	$(CC) -o $@ $(OBJS) obj/population.o obj/attraction.o obj/Floyd.o obj/List.o obj/Graph.o $(CFLAGS) $(LDLIBS)
 	@echo "\n$(COLOR_GREEN)>>> GUI : $(COLOR_WHITE)Program has been successfully compiled!\n"
 
 $(OBJDIR)%.o: $(SRCDIR)%.c
@@ -29,6 +29,9 @@ $(OBJDIR)%.o: $(SRCDIR)%.c
 	mkdir -p $(OBJDIR)
 	$(CC) -c -o obj/attraction.o ../IA/src/attraction.c $(CFLAGS)
 	$(CC) -c -o obj/population.o ../IA/src/population.c $(CFLAGS)
+	$(CC) -c -o obj/List.o ../Algo/List.c $(CFLAGS)
+	$(CC) -c -o obj/Graph.o ../Algo/Graph.c $(CFLAGS)
+	$(CC) -c -o obj/Floyd.o ../Algo/Floyd.c $(CFLAGS)
 	$(CC) -c -o $@ $< $(CFLAGS) $(LDLIBS)
 
 clean:
