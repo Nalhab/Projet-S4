@@ -125,6 +125,9 @@ GdkRGBA green;
 
 float attractionColor;
 
+int **AdjList;
+
+
 typedef struct
 {
     int number;
@@ -468,8 +471,7 @@ int loop2()
     att = *(atts + parcGUI->nbatt);
     att->likeness += 3;
     parcGUI->totlikeness += 3;
-    int **adjL = FUNCTION(parcGUI); 
-    adjL = adjL;   
+    AdjList = FUNCTION(parcGUI); 
 
     if (parcGUI->nbpeople > 0)
         parcGUI->nbpeople = 0;
