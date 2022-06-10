@@ -115,6 +115,9 @@ GtkWidget* cost9;
 GtkWidget* cost10;
 GtkWidget* cost11;
 
+GtkWidget* quit;
+GtkWidget* buttonValidate;
+
 
 // VARIABLES FOR ALGORITHMS -----------------
 
@@ -313,6 +316,8 @@ Game game =
                 .posX = 469,
                 .posY = 110,
                 .posOrNeg = FALSE,
+                .isOut = FALSE,
+                .inAttraction = TRUE,
             },
     };
 
@@ -437,6 +442,9 @@ int main(int agrc, char* argv[])
     cost10 = GTK_WIDGET(gtk_builder_get_object(builder, "cost10"));
     cost11 = GTK_WIDGET(gtk_builder_get_object(builder, "cost11"));
 
+    quit = GTK_WIDGET(gtk_builder_get_object(builder, "quit"));
+    buttonValidate = GTK_WIDGET(gtk_builder_get_object(builder, "buttonValidate"));
+
     red.red = 1.0;
     red.green = 0.0;
     red.blue = 0.0;
@@ -548,6 +556,31 @@ int timeoutLabel()
 
     updateLabel(GTK_LABEL(labelHumans), nbOfHumans);
 
+    if (game.disc.isOut == TRUE)
+    {
+        g_source_remove(threadID);
+        threadID = 0;
+        g_source_remove(humanID);
+        humanID = 0;
+        g_source_remove(iaID);
+        iaID = 0;
+        g_source_remove(colorID);
+        colorID = 0;
+    }
+    else
+    {
+        if (game.disc.inAttraction == FALSE)
+        {
+            gtk_widget_hide(buttonValidate);
+            gtk_widget_hide(quit);
+        }
+        else
+        {
+            gtk_widget_show(buttonValidate);
+            gtk_widget_show(quit);
+        }
+    }
+
     if (nbOfHumans == 0)
         return 0;
     else
@@ -589,6 +622,12 @@ void on_button1_clicked(__attribute__((unused)) GtkButton *button)
     create_check_array(checkIcon);
     create_color_array(color);
     create_cost_array(cost);
+
+    gtk_widget_show(buttonValidate);
+    gtk_widget_show(quit);
+
+    game.disc.rect.width = 9;
+    game.disc.rect.height = 9;
 
     for (int i = 11; i > 1; i -= 1)
     {
@@ -634,6 +673,8 @@ void on_button1_clicked(__attribute__((unused)) GtkButton *button)
     gtk_widget_show(window2);
 
     gtk_widget_show(icon1);
+
+    game.disc.inAttraction = True;
 
     //START ALGORITHMS
 
@@ -681,7 +722,7 @@ void on_button1bis_clicked()
     gtk_widget_show(window1);
     gtk_widget_hide(window2);
 
-    if (nbOfHumans != 0)
+    if (nbOfHumans != 0 && game.disc.isOut == FALSE)
     {
         g_source_remove(threadID);
         g_source_remove(humanID);
@@ -702,6 +743,8 @@ void on_button1bis_clicked()
         updateLabel(GTK_LABEL(cost[i]), 0);
     }
 
+    game.disc.inAttraction = TRUE;
+
     //TEMP
     if (game.disc.event != 0)
         g_source_remove(game.disc.event);
@@ -713,6 +756,7 @@ void on_button1bis_clicked()
     game.disc.attractionGo = 1;
     game.disc.posX = 469;
     game.disc.posY = 110;
+    game.disc.isOut = FALSE;
 }
 
 //TEMP FUNCTION
@@ -821,10 +865,24 @@ void on_checkIcon11_toggled()
         attractionToggled[10] = 1;
 }
 
+void on_quit_clicked(GtkButton* button)
+{
+    game.disc.posOrNeg = FALSE;
+    game.disc.step.x = step[game.disc.attractionIn];
+    game.disc.posX = attractions[0].posX;
+    game.disc.posY = attractions[0].posY;
+    game.disc.attractionGo = 0;
+    game.disc.inAttraction = FALSE;
+    on_start(button, &game);
+    gtk_widget_hide(quit);
+    gtk_widget_hide(buttonValidate);
+}
+
 void on_buttonValidate_clicked(GtkButton* button)
 {
     game.disc.posOrNeg = FALSE;
     game.disc.step.x = step[game.disc.attractionIn];
+    game.disc.inAttraction = FALSE;
 
     for (int i = 0; i < nbOfAttractions; i += 1)
     {

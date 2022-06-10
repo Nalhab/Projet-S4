@@ -23,12 +23,15 @@ typedef struct Disc
     int posX;
     int posY;
     gboolean posOrNeg;
+    gboolean isOut;
+    gboolean inAttraction;
 } Disc;
 
 typedef struct UserInterface
 {
     GtkWindow* window;              // Main window
     GtkDrawingArea* area;           // Drawing area
+    GtkDrawingArea* endarea;
 } UserInterface;
 
 typedef struct Game

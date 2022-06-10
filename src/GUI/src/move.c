@@ -751,10 +751,15 @@ gboolean on_move_disc(gpointer user_data)
         g_source_remove(game->disc.event);
         game->disc.event = 0;
         game->disc.attractionIn = game->disc.attractionGo;
-        //game->disc.event = g_timeout_add(game->disc.period, on_move_disc, game);
-    }
+        game->disc.inAttraction = TRUE;
 
-    //printf("X : %i\nY : %i\n", game->disc.rect.x, game->disc.rect.y);
+        if (game->disc.attractionGo == 0)
+        {
+            game->disc.rect.height = 0;
+            game->disc.rect.width = 0;
+            game->disc.isOut = TRUE;
+        }
+    }
 
     // Works out the new position of the disc.
     game->disc.rect.x = CLAMP(game->disc.rect.x + game->disc.step.x, 193,

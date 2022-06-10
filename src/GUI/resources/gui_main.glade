@@ -425,7 +425,7 @@
             <property name="label" translatable="yes">0</property>
           </object>
           <packing>
-            <property name="x">30</property>
+            <property name="x">96</property>
             <property name="y">30</property>
           </packing>
         </child>
@@ -589,7 +589,7 @@
             <signal name="clicked" handler="on_button1bis_clicked" swapped="no"/>
           </object>
           <packing>
-            <property name="x">690</property>
+            <property name="x">620</property>
             <property name="y">25</property>
           </packing>
         </child>
@@ -600,7 +600,7 @@
             <property name="label" translatable="yes">0</property>
           </object>
           <packing>
-            <property name="x">30</property>
+            <property name="x">96</property>
             <property name="y">60</property>
           </packing>
         </child>
@@ -608,7 +608,6 @@
           <object class="GtkButton" id="buttonPath">
             <property name="label" translatable="yes">
 </property>
-            <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
             <signal name="clicked" handler="on_buttonPath_clicked" swapped="no"/>
@@ -1135,6 +1134,41 @@
           <packing>
             <property name="x">865</property>
             <property name="y">435</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="textTime">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">Time :</property>
+          </object>
+          <packing>
+            <property name="x">51</property>
+            <property name="y">30</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="peopleText">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">People left :</property>
+          </object>
+          <packing>
+            <property name="x">15</property>
+            <property name="y">60</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="quit">
+            <property name="label" translatable="yes">Leave</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <signal name="clicked" handler="on_quit_clicked" swapped="no"/>
+          </object>
+          <packing>
+            <property name="x">746</property>
+            <property name="y">25</property>
           </packing>
         </child>
       </object>
