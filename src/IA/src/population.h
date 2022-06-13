@@ -10,5 +10,6 @@ void pop_init(size_t n, parc* parc);
 
 void loop(parc* parc);
 
+void* timer(void* attr);
 
 #endif

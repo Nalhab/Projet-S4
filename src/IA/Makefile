@@ -2,7 +2,7 @@ CC = gcc
 
 EXEC = main
 
-CFLAGS = -Wall -Wextra
+CFLAGS = -Wall -Wextra -pthread
 
 SRCDIR = src/main/
 IADIR = src/

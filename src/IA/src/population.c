@@ -10,7 +10,7 @@ attraction* dest(parc* parc)
     size_t i = 0;
     int b = 1;
     attraction** atts = parc->att;
-    for(; i < parc->nbatt && b; i++)
+    for(; i <= parc->nbatt && b; i++)
     {
         tot += (*(atts+i))->likeness;
         if ((size_t)rdm <= tot)
@@ -25,7 +25,7 @@ attraction* dest(parc* parc)
     //printf("le i = %ld and nbatt = %ld\n", i, parc->nbatt);
     //if (i > parc->nbatt)
     //{
-        fin = *(atts+parc->nbatt);
+        fin = *(atts+parc->nbatt+1);
         fin->nbpeople++;
         parc->nbpeople--;
     }
@@ -44,21 +44,57 @@ void pop_init(size_t n, parc* parc)
     }
 }
 
+//struct pour les threads avec le parc et l'attraction
+struct thread_data
+{
+    parc* parc;
+    attraction* att;
+};
+
 //toutes les 5s att->capacity personne sortent de l'att et retourne dans une autre attractions
 void loop(parc* parc)
 {
     attraction** atts = parc->att;
     attraction* att = *atts;
-    //nbr de tour de boucle
     size_t lp = 0;
+
+    pthread_t *thr = malloc((parc->nbatt+1)*sizeof(pthread_t));
+    
+    for (size_t i = 0; i <= parc->nbatt; i++)
+    {
+        
+        struct thread_data* td = malloc(sizeof(struct thread_data));
+        td->parc = parc;
+        td->att = *(atts+i);
+        int e = pthread_create(&thr[i], NULL, timer, (void*)td);
+        if (e != 0)
+            exit(EXIT_FAILURE);
+
+    }
+
+
     while(parc->nbpeople > 0 && lp < 100)
     {
         lp++;
-        printf("%ld\n", lp);
+        if(lp == 40)
+        {
+            att = *(atts + parc->nbatt);
+            att->likeness += 40;
+            parc->totlikeness += 40;
+        }
+
+        if (lp == 60)
+        {
+            att = *(atts + parc->nbatt);
+            att->likeness -= 30;
+            parc->totlikeness -= 30;
+        }
+
         print_parc(parc);
-        srand(time(NULL));
+        //srand(time(NULL));
+
         sleep(2);
-        for(size_t i = 0; i < parc->nbatt; i++)
+        /*for(size_t i = 0; i < parc->nbatt; i++)
         {
             att = *(atts+i);
             for (size_t j = 0; j < att->capacity && att->nbpeople > 0; j++)
@@ -66,8 +102,8 @@ void loop(parc* parc)
                 dest(parc);
                 att->nbpeople--;
             }
-        }
-        att = *(atts + parc->nbatt);
+        }*/
+        att = *(atts + parc->nbatt + 1);
         att->likeness += 3;
         parc->totlikeness += 3;
     }
@@ -78,7 +114,23 @@ void loop(parc* parc)
     }
 }
 //faire au bout d'un certain nb de boucle tout le monde sort pour faire genre la fermeture du parc
+//je vais faire des threads je crois
 
+void* timer(void* thrdt)
+{
+    struct thread_data* td = (struct thread_data*)thrdt;
+    parc* parc = td->parc;
+    attraction* att = td->att;
+    while(1)
+    {
+        sleep(att->duration);
+        for (size_t i = 0; i < att->capacity && att->nbpeople > 0; i++)
+        {
+            dest(parc);
+            att->nbpeople--;
+        }
+    }
+}
 
 //on pourrait faire aussi en sorte que l'utilisateur puissent + ou - accelerer les loops
 //en mettant une variable dans le sleep

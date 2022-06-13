@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <unistd.h>
+#include <pthread.h>
 
 //soit 1sec = 1m
 //durée usuellement = entre 1 et 3 min
@@ -43,6 +44,9 @@ typedef struct parc
 
     //liste des attractions
     attraction** att;
+
+    //pluie qui augmente ou diminue le nombre de gens dans les attractions
+    int pluie;
 }parc;
 
 attraction* init_att(size_t, parc*);
