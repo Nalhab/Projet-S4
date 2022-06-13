@@ -14,10 +14,12 @@ GtkWidget* window1;
 GtkWidget* fixed1;
 
 GtkWidget* button1;
-GtkWidget* check1;
 GtkWidget* check2;
 GtkWidget* spin1;
 GtkWidget* spin2;
+GtkWidget* radio1;
+GtkWidget* radio2;
+GtkWidget* radio3;
 GtkBuilder* builder;
 
 GtkWidget* window2;
@@ -125,7 +127,7 @@ GtkWidget* buttonValidate;
 int nbOfHumans = 5;
 int nbOfAttractions = 2;
 int isAuto = 0; // 1 -> True    0 -> False
-int isRaining = 0; // 1 -> True    0 -> False
+int raining = 0;
 
 parc* parcGUI;
 
@@ -347,7 +349,9 @@ int main(int agrc, char* argv[])
     fixed1 = GTK_WIDGET(gtk_builder_get_object(builder, "fixed1"));
     fixed2 = GTK_WIDGET(gtk_builder_get_object(builder, "fixed1"));
     button1 = GTK_WIDGET(gtk_builder_get_object(builder, "button1"));
-    check1 = GTK_WIDGET(gtk_builder_get_object(builder, "check1"));
+    radio1 = GTK_WIDGET(gtk_builder_get_object(builder, "radio1"));
+    radio2 = GTK_WIDGET(gtk_builder_get_object(builder, "radio2"));
+    radio3 = GTK_WIDGET(gtk_builder_get_object(builder, "radio3"));
     check2 = GTK_WIDGET(gtk_builder_get_object(builder, "check2"));
     spin1 = GTK_WIDGET(gtk_builder_get_object(builder, "spin1"));
     spin2 = GTK_WIDGET(gtk_builder_get_object(builder, "spin2"));
@@ -691,8 +695,8 @@ void on_button1_clicked(__attribute__((unused)) GtkButton *button)
 
     // TEST :
     //printf("%i\n", nbOfHumans);
-    printf("%i\n", isRaining);
-    printf("%i\n", isAuto);
+    //printf("%i\n", raining);
+    //printf("%i\n", isAuto);
     //printf("%i\n", nbOfAttractions);
 }
 
@@ -710,17 +714,6 @@ void on_spin2_value_changed(GtkSpinButton* spin)
     nbOfHumans = gtk_spin_button_get_value_as_int(spin);
 }
 
-void on_check1_toggled(GtkCheckButton* check)
-{
-    // Goes here if weather is changed
-
-    gboolean T = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(check));
-    if (T)
-        isRaining = 1;
-    else
-        isRaining = 0;
-}
-
 void on_check2_toggled(GtkCheckButton* check)
 {
     // Goes here if weather is changed
@@ -730,6 +723,21 @@ void on_check2_toggled(GtkCheckButton* check)
         isAuto = 1;
     else
         isAuto = 0;
+}
+
+void on_radio1_toggled()
+{
+    raining = 0;
+}
+
+void on_radio2_toggled()
+{
+    raining = 1;
+}
+
+void on_radio3_toggled()
+{
+    raining = 2;
 }
 
 void on_button1bis_clicked()
