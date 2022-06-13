@@ -5,7 +5,6 @@ attraction* init_att(size_t i, parc* parc)
 {
     attraction* att = malloc(sizeof(attraction));
     att->number = i;
-    att->duration = 2;
     att->duration = rand()%3 + 1;
     att->capacity = rand()%9 + 1;
     size_t likeness = (size_t)rand()%90 + 10;
@@ -16,7 +15,7 @@ attraction* init_att(size_t i, parc* parc)
 }
 
 //initialisation du parc avec n attraction
-parc* init_parc(size_t n)
+parc* init_parc(size_t n, int pluie)
 {
     time_t t;
     srand((unsigned) time(&t));
@@ -27,6 +26,8 @@ parc* init_parc(size_t n)
     prc->totlikeness = 0;
     prc->nbpeople = 0;
     prc->att = atts;
+    prc->pluie = pluie;
+    prc->pluiing = 0;
 
     for (size_t i = 0; i < n; i++)
     {
@@ -35,6 +36,7 @@ parc* init_parc(size_t n)
     //adding the no attraction place
     attraction* att = malloc(sizeof(attraction));
     att->number = n;
+    att->capacity = 100;
     att->duration = 3;
     att->likeness = 10;
     att->nbpeople = 0;
@@ -75,6 +77,9 @@ void print_parc(parc* parc)
     }
     att = *(parc->att+(parc->nbatt));
     printf("person waiting = %ld\n", att->nbpeople);
+    printf("pluiing ? %s\n", parc->pluiing ? "yes" : "no");
+    printf("il devrait y avoir de la pluie, %i\n", parc->pluie);
+    printf("waiting likeness = %ld\n", att->likeness);
 
     att = *(parc->att+(parc->nbatt)+1);
     printf("exited person = %ld\n", att->nbpeople);

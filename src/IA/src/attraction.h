@@ -46,12 +46,16 @@ typedef struct parc
     attraction** att;
 
     //pluie qui augmente ou diminue le nombre de gens dans les attractions
+    //true => il va y avoir de la pluie a certains moment mais pas tous le temps
+    //faux => jamais de pluie
     int pluie;
+    //durée de la pluie en tours
+    size_t pluiing;
 }parc;
 
 attraction* init_att(size_t, parc*);
 
-parc* init_parc(size_t);
+parc* init_parc(size_t, int);
 
 void print_parc(parc*);
 

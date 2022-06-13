@@ -76,42 +76,61 @@ void loop(parc* parc)
     while(parc->nbpeople > 0 && lp < 100)
     {
         lp++;
+        printf("loop %ld\n", lp);
+        
+        if (parc->pluie)
+        {
+            if (parc->pluiing)
+            {
+                parc->pluiing--;
+                if (!parc->pluiing)
+                {
+                    att = *(atts + parc->nbatt);
+                    att->likeness -= 40;
+                    parc->totlikeness -= 40;
+                    parc->pluiing = 0;
+                }
+            }
+            else
+            {
+                //45%100 de chance d'avoir de la pluie
+                if (rand()%100 <= 45)
+                {
+                    att = *(atts + parc->nbatt);
+                    att->likeness += 40;
+                    parc->totlikeness += 40;
+                    parc->pluiing = rand()%4 + 1;
+                }
+            }
+            
+        }
+        
+        //pause midi
         if(lp == 40)
         {
             att = *(atts + parc->nbatt);
             att->likeness += 40;
             parc->totlikeness += 40;
         }
-
         if (lp == 60)
         {
             att = *(atts + parc->nbatt);
-            att->likeness -= 30;
-            parc->totlikeness -= 30;
+            att->likeness -= 40;
+            parc->totlikeness -= 40;
         }
 
         print_parc(parc);
         //srand(time(NULL));
 
         sleep(2);
-        /*for(size_t i = 0; i < parc->nbatt; i++)
-        {
-            att = *(atts+i);
-            for (size_t j = 0; j < att->capacity && att->nbpeople > 0; j++)
-            {
-                dest(parc);
-                att->nbpeople--;
-            }
-        }*/
+        
         att = *(atts + parc->nbatt + 1);
         att->likeness += 3;
         parc->totlikeness += 3;
     }
-    if (parc->nbpeople > 0)
-    {
-        parc->nbpeople = 0;
 
-    }
+    if (parc->nbpeople > 0)
+        parc->nbpeople = 0;
 }
 //faire au bout d'un certain nb de boucle tout le monde sort pour faire genre la fermeture du parc
 //je vais faire des threads je crois
