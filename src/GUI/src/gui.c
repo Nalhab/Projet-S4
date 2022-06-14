@@ -529,8 +529,8 @@ int loop2()
     AdjList = FUNCTION(parcGUI, parcGUI->nbatt);
     if(isAuto == 1)
     {
-	int finish = 0;
-	while(finish < parcGUI->nbatt)
+	size_t finish = 0;
+	while (finish < parcGUI->nbatt)
 	{
 		int* att_already_did = calloc(parcGUI->nbatt, sizeof(int));
 		int min = 99;

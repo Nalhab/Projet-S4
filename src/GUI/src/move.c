@@ -325,7 +325,7 @@ gboolean on_move_disc(gpointer user_data)
     }
     else if (game->disc.attractionIn == 4)
     {
-        if (game->disc.attractionGo >= 8 && game->disc.attractionGo <= 11)
+        if ((game->disc.attractionGo >= 8 && game->disc.attractionGo <= 11) || game->disc.attractionGo == 0)
         {
             if (game->disc.rect.x == 584 &&  game->disc.rect.y == 250)
             {
@@ -397,7 +397,7 @@ gboolean on_move_disc(gpointer user_data)
                 game->disc.event = 0;
                 game->disc.event = g_timeout_add(game->disc.period, on_move_disc, game);
             }
-            else if (game->disc.attractionGo <= 10)
+            else if (game->disc.attractionGo <= 10 && game->disc.attractionGo != 0)
             {
                 if (game->disc.rect.x == 389 && game->disc.rect.y == 250)
                 {
@@ -567,7 +567,7 @@ gboolean on_move_disc(gpointer user_data)
 
         if (game->disc.posOrNeg == FALSE)
         {
-            if (game->disc.attractionGo > 8)
+            if (game->disc.attractionGo > 8 || game->disc.attractionGo == 0)
             {
                 game->disc.step.x = -1;
                 game->disc.step.y = -1;

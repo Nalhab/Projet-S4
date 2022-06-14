@@ -37,6 +37,11 @@
         # Description :
 
             First, you have to choose the paramaters that you want.
+		You can choose :
+			- the number of people
+			- the number of attractions
+			- the rain itensity (going from no rain to permanent rain)
+			- run the program automatically
             When you have finished, click on the button "Start the simulation".
             A new window will pop with several options.
             On top left there are 2 numbers :
@@ -45,10 +50,18 @@
             These numbers are usefull to see how the simulation evolves.
             Also, you can see from 2 to 12 attractions, depending the number you chosed
             in the parameters window. Next to each attractions there is a number which
-            represents the number of people that are in the attraction.
+            represents the number of people that are in the attraction. For each attraction
+		you can see a colored square. If the square is green it means that there are not
+		a lot of people. If it is orange then there are some people and when it's red it
+		means there are a lot of people.
             On right top oyou can see a button named "Go to menu" that is usefull to stop
             the simulation and go back to the menu if you want to change parameters and
             start again.
+		You can also see a list of the attractions and on top a button named "Validate".
+		So first you need to check all the attractions that you want to visited then after
+		clicking the button the red point will travel in the parc to all the attractions.
+		Then after visiting all the attractions you wanted you can just click the "Leave"
+		button to leave the parc.
 
 
         # Quiting :
