@@ -42,6 +42,13 @@ parc* init_parc(size_t n, int pluie)
     att->nbpeople = 0;
 
     prc->totlikeness += 10;
+    
+    if (pluie == 2)
+        {
+            att->likeness += 40;
+            prc->totlikeness += 40;
+            prc->pluiing = 1;
+        }
 
     *(atts+n) = att;
     

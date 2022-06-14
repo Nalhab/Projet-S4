@@ -78,7 +78,7 @@ void loop(parc* parc)
         lp++;
         printf("loop %ld\n", lp);
         
-        if (parc->pluie)
+        if (parc->pluie == 1)
         {
             if (parc->pluiing)
             {
