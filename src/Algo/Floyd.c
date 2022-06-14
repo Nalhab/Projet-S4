@@ -49,33 +49,22 @@ void printMatrix(int** matrix)
 
 void adjList_refresh(parc* parcGUI, int n, struct Graph* graph)
 {
-        for(size_t i = 1; i < (size_t)n; i++)
+        for(size_t i = 1; i <= (size_t)n; i++)
         {
 		attraction* att = *(parcGUI->att + i- 1);
 		int val = (att->nbpeople / 10)*5;
-                for(size_t j = 0; j < (size_t)n; j++)
+                for(size_t j = 0; j < (size_t)12; j++)
                 {
 			if( i != j)
 			{
                         	graph->adjLists[j][i] += val;
                 	}
-			/*graph->adjLists[0][1] = 20;
-			graph->adjLists[2][1] = 20;
-			graph->adjLists[3][1] = 20;
-			graph->adjLists[4][1] = 20;
-			graph->adjLists[5][1] = 20;
-			graph->adjLists[6][1] = 20;
-			graph->adjLists[7][1] = 20;
-			graph->adjLists[8][1] = 20;
-			graph->adjLists[9][1] = 20;
-			graph->adjLists[10][1] = 20;
-			graph->adjLists[11][1] = 20;*/
 		}
 
         }
 }
 
-int** FUNCTION(parc* parcGUI) {
+int** FUNCTION(parc* parcGUI, size_t nbAtt) {
 	//All edges of the Graph
         struct Edge edges[] =
             {
@@ -113,8 +102,10 @@ int** FUNCTION(parc* parcGUI) {
 		//l'ajout des liaisons dans la liste
         }
         //printf("\n");
+	
 	struct Graph *graph = createGraph(n, List, l);
-	adjList_refresh(parcGUI, n, graph);
+	adjList_refresh(parcGUI,(int) nbAtt, graph);
+	
 	//Liste d'adjacense du Graph
 	for(int i = 0; i < n; i++)
 	{
@@ -137,7 +128,6 @@ int** FUNCTION(parc* parcGUI) {
 				graph->adjLists[i][j] = INF;
 		}
 	}
-	//adjList_refresh(parcGUI, n, graph);
 	
 	printf("\n");
 	printf("Result of the Floyd algorithm :\n\n");

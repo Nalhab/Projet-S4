@@ -526,7 +526,7 @@ int loop2()
     att = *(atts + parcGUI->nbatt);
     att->likeness += 3;
     parcGUI->totlikeness += 3;
-    AdjList = FUNCTION(parcGUI); 
+    AdjList = FUNCTION(parcGUI, parcGUI->nbatt); 
     printf("\n");
     for(int i = 0; i < nbOfAttractions + 1; i += 1)
     {
