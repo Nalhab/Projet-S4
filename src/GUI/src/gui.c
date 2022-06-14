@@ -685,7 +685,7 @@ void on_button1_clicked(__attribute__((unused)) GtkButton *button)
 
     //START ALGORITHMS
 
-    parcGUI = init_parc(nbOfAttractions);
+    parcGUI = init_parc(nbOfAttractions, 1);
     pop_init(nbOfHumans, parcGUI);
     timeoutLabel();
     humanID = g_timeout_add(200, timeoutLabel, NULL);
