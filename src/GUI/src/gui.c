@@ -527,7 +527,7 @@ int loop2()
     att->likeness += 3;
     parcGUI->totlikeness += 3;
     AdjList = FUNCTION(parcGUI, parcGUI->nbatt);
-    if(isAuto == 1)
+    /*if (isAuto == 1)
     {
 	size_t finish = 0;
 	while (finish < parcGUI->nbatt)
@@ -547,7 +547,7 @@ int loop2()
 
 		printf("====> %d <====\n", min);
 	}
-    } 
+    }*/ 
     printf("\n");
     for(int i = 0; i < nbOfAttractions + 1; i += 1)
     {
@@ -597,15 +597,15 @@ int timeoutLabel()
     }
     else
     {
-        if (game.disc.inAttraction == FALSE)
-        {
-            gtk_widget_hide(buttonValidate);
-            gtk_widget_hide(quit);
-        }
-        else
+        if (game.disc.inAttraction)
         {
             gtk_widget_show(buttonValidate);
             gtk_widget_show(quit);
+        }
+        else
+        {
+            gtk_widget_hide(buttonValidate);
+            gtk_widget_hide(quit);
         }
     }
 
@@ -927,16 +927,47 @@ void on_buttonValidate_clicked(GtkButton* button)
     game.disc.posOrNeg = FALSE;
     game.disc.step.x = step[game.disc.attractionIn];
     game.disc.inAttraction = FALSE;
+    gtk_widget_hide(buttonValidate);
+    gtk_widget_hide(quit);
 
-    for (int i = 0; i < nbOfAttractions; i += 1)
+    if (isAuto == 1)
     {
-        if (attractionToggled[i] == 0)
-        {
-            game.disc.attractionGo = attractions[i + 1].number;
-            game.disc.posX = attractions[i + 1].posX;
-            game.disc.posY = attractions[i + 1].posY;
+	    size_t finish = 0;
+	    while (finish < parcGUI->nbatt)
+	    {
+		    int* att_already_did = calloc(parcGUI->nbatt, sizeof(int));
+		    int min = 99;
+		    int j = game.disc.attractionIn;
+		    for(size_t i = 0; i <= parcGUI->nbatt; i++)
+		    {
+			    if((min == 99 || AdjList[j][i]<AdjList[j][min]) 
+					    && att_already_did[i] == 0)
+				    min = i;
+		    }
+		    att_already_did[min] = 1;
+		    finish += 1;
+
+            game.disc.attractionGo = attractions[min].number;
+            game.disc.posX = attractions[min].posX;
+            game.disc.posY = attractions[min].posY;
             on_start(button, &game);
-            break;
+
+
+		    printf("====> %d <====\n", min);
+	    }
+    }
+    else
+    {
+        for (int i = 0; i < nbOfAttractions; i += 1)
+        {
+            if (attractionToggled[i] == 0)
+            {
+                game.disc.attractionGo = attractions[i + 1].number;
+                game.disc.posX = attractions[i + 1].posX;
+                game.disc.posY = attractions[i + 1].posY;
+                on_start(button, &game);
+                break;
+            }
         }
     }
 }
