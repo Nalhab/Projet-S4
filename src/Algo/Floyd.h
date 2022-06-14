@@ -12,4 +12,4 @@ int** floydWarshall(int** graph, int n);
 
 void printMatrix(int** matrix);
 
-int** FUNCTION(parc* parcGUI);
+int** FUNCTION(parc* parcGUI, size_t nbAtt);

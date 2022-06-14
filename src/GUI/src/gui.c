@@ -526,7 +526,7 @@ int loop2()
     att = *(atts + parcGUI->nbatt);
     att->likeness += 3;
     parcGUI->totlikeness += 3;
-    AdjList = FUNCTION(parcGUI); 
+    AdjList = FUNCTION(parcGUI, parcGUI->nbatt); 
     printf("\n");
     for(int i = 0; i < nbOfAttractions + 1; i += 1)
     {
@@ -685,7 +685,7 @@ void on_button1_clicked(__attribute__((unused)) GtkButton *button)
 
     //START ALGORITHMS
 
-    parcGUI = init_parc(nbOfAttractions);
+    parcGUI = init_parc(nbOfAttractions, 1);
     pop_init(nbOfHumans, parcGUI);
     timeoutLabel();
     humanID = g_timeout_add(200, timeoutLabel, NULL);
