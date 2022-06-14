@@ -526,7 +526,28 @@ int loop2()
     att = *(atts + parcGUI->nbatt);
     att->likeness += 3;
     parcGUI->totlikeness += 3;
-    AdjList = FUNCTION(parcGUI, parcGUI->nbatt); 
+    AdjList = FUNCTION(parcGUI, parcGUI->nbatt);
+    if(isAuto == 1)
+    {
+	int finish = 0;
+	while(finish < parcGUI->nbatt)
+	{
+		int* att_already_did = calloc(parcGUI->nbatt, sizeof(int));
+		int min = 99;
+		int j = game.disc.attractionIn;
+		for(size_t i = 0; i <= parcGUI->nbatt; i++)
+		{
+			if((min == 99 || AdjList[j][i]<AdjList[j][min]) 
+					&& att_already_did[i] == 0)
+				min = i;
+		}
+		att_already_did[min] = 1;
+		finish += 1;
+
+
+		printf("====> %d <====\n", min);
+	}
+    } 
     printf("\n");
     for(int i = 0; i < nbOfAttractions + 1; i += 1)
     {
