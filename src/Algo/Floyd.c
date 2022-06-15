@@ -101,7 +101,7 @@ int** FUNCTION(parc* parcGUI, size_t nbAtt) {
 		//printf("%d, %d\n" ,edges[i].src,edges[i].dest); //Visualisation de 
 		//l'ajout des liaisons dans la liste
         }
-        //printf("\n");
+        printf("\n");
 	
 	struct Graph *graph = createGraph(n, List, l);
 	adjList_refresh(parcGUI,(int) nbAtt, graph);
@@ -116,7 +116,6 @@ int** FUNCTION(parc* parcGUI, size_t nbAtt) {
 		printf("\n");
 	}
 	printf("\n");
-
 	printf("Edges of the Graph :\n\n");
 	//printGraph(graph, n);
 	//set all 0 to Inf

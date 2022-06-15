@@ -325,8 +325,12 @@ Game game =
             },
     };
 
+int* alr_here;
+
 int main(int agrc, char* argv[])
 {
+    alr_here = calloc(12, sizeof(int));
+
     gtk_init(&agrc, &argv);
 
     builder = gtk_builder_new_from_file("resources/gui_main.glade");
@@ -527,27 +531,6 @@ int loop2()
     att->likeness += 3;
     parcGUI->totlikeness += 3;
     AdjList = FUNCTION(parcGUI, parcGUI->nbatt);
-    /*if (isAuto == 1)
-    {
-	size_t finish = 0;
-	while (finish < parcGUI->nbatt)
-	{
-		int* att_already_did = calloc(parcGUI->nbatt, sizeof(int));
-		int min = 99;
-		int j = game.disc.attractionIn;
-		for(size_t i = 0; i <= parcGUI->nbatt; i++)
-		{
-			if((min == 99 || AdjList[j][i]<AdjList[j][min]) 
-					&& att_already_did[i] == 0)
-				min = i;
-		}
-		att_already_did[min] = 1;
-		finish += 1;
-
-
-		printf("====> %d <====\n", min);
-	}
-    }*/ 
     printf("\n");
     for(int i = 0; i < nbOfAttractions + 1; i += 1)
     {
@@ -933,27 +916,25 @@ void on_buttonValidate_clicked(GtkButton* button)
     if (isAuto == 1)
     {
 	    size_t finish = 0;
-	    while (finish < parcGUI->nbatt)
+	    while(finish < parcGUI->nbatt)
 	    {
-		    int* att_already_did = calloc(parcGUI->nbatt, sizeof(int));
-		    int min = 99;
-		    int j = game.disc.attractionIn;
-		    for(size_t i = 0; i <= parcGUI->nbatt; i++)
+		    size_t min = 90;
+		    int i = game.disc.attractionIn;
+		    alr_here[i] = 1;
+		    for(size_t j = 1; j < parcGUI->nbatt; j++)
 		    {
-			    if((min == 99 || AdjList[j][i]<AdjList[j][min]) 
-					    && att_already_did[i] == 0)
-				    min = i;
+			if(min == 90 && alr_here[j] == 0)
+				min = j;
+			else if(alr_here[j] == 0 && AdjList[i][j] < AdjList[i][min])
+				min = j;
+		
 		    }
-		    att_already_did[min] = 1;
-		    finish += 1;
-
+		    finish++;
+		printf("%d,%d,%d\n\n\n",min,min,min);
             game.disc.attractionGo = attractions[min].number;
             game.disc.posX = attractions[min].posX;
             game.disc.posY = attractions[min].posY;
             on_start(button, &game);
-
-
-		    printf("====> %d <====\n", min);
 	    }
     }
     else
