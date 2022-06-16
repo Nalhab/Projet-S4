@@ -930,7 +930,8 @@ void on_buttonValidate_clicked(GtkButton* button)
 		
 		    }
 		    finish++;
-		printf("%d,%d,%d\n\n\n",min,min,min);
+
+            printf("====> %ld <====\n\n", min);
             game.disc.attractionGo = attractions[min].number;
             game.disc.posX = attractions[min].posX;
             game.disc.posY = attractions[min].posY;
